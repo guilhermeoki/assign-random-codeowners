@@ -194,7 +194,7 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🐞 Fixes
 
-- Avoid assigning PR authors as reviewers [#27](https://github.com/pleo-oss/assign-random-codeowners/pull/27) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Avoid assigning PR authors as reviewers [#27](https://github.com/pleo-io/assign-random-codeowners/pull/27) ([@andersfischernielsen](https://github.com/andersfischernielsen))
 
 #### ⚠️ Pushed to `main`
 
@@ -231,10 +231,10 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🏠 Internal
 
-- Pin dependency typescript to 4.8.4 [#26](https://github.com/pleo-oss/assign-random-codeowners/pull/26) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update typescript-eslint monorepo to v5.40.1 [#25](https://github.com/pleo-oss/assign-random-codeowners/pull/25) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update dependency @swc/core to v1.3.9 [#24](https://github.com/pleo-oss/assign-random-codeowners/pull/24) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update jest monorepo to v29.2.0 [#23](https://github.com/pleo-oss/assign-random-codeowners/pull/23) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Pin dependency typescript to 4.8.4 [#26](https://github.com/pleo-io/assign-random-codeowners/pull/26) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update typescript-eslint monorepo to v5.40.1 [#25](https://github.com/pleo-io/assign-random-codeowners/pull/25) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update dependency @swc/core to v1.3.9 [#24](https://github.com/pleo-io/assign-random-codeowners/pull/24) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update jest monorepo to v29.2.0 [#23](https://github.com/pleo-io/assign-random-codeowners/pull/23) ([@renovate[bot]](https://github.com/renovate[bot]))
 
 #### Authors: 3
 
@@ -248,7 +248,7 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🐞 Fixes
 
-- Update typescript-eslint monorepo to v5.40.0 [#22](https://github.com/pleo-oss/assign-random-codeowners/pull/22) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update typescript-eslint monorepo to v5.40.0 [#22](https://github.com/pleo-io/assign-random-codeowners/pull/22) ([@renovate[bot]](https://github.com/renovate[bot]))
 
 #### ⚠️ Pushed to `main`
 
@@ -267,8 +267,8 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🐞 Fixes
 
-- Update dependency @swc/core to v1.3.8 [#20](https://github.com/pleo-oss/assign-random-codeowners/pull/20) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update dependency eslint to v8.25.0 [#21](https://github.com/pleo-oss/assign-random-codeowners/pull/21) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update dependency @swc/core to v1.3.8 [#20](https://github.com/pleo-io/assign-random-codeowners/pull/20) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update dependency eslint to v8.25.0 [#21](https://github.com/pleo-io/assign-random-codeowners/pull/21) ([@renovate[bot]](https://github.com/renovate[bot]))
 
 #### ⚠️ Pushed to `main`
 
@@ -287,8 +287,8 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🐞 Fixes
 
-- Update dependency @swc/core to v1.3.5 [#18](https://github.com/pleo-oss/assign-random-codeowners/pull/18) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update dependency @types/jest to v29.1.2 [#19](https://github.com/pleo-oss/assign-random-codeowners/pull/19) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update dependency @swc/core to v1.3.5 [#18](https://github.com/pleo-io/assign-random-codeowners/pull/18) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update dependency @types/jest to v29.1.2 [#19](https://github.com/pleo-io/assign-random-codeowners/pull/19) ([@renovate[bot]](https://github.com/renovate[bot]))
 
 #### ⚠️ Pushed to `main`
 
@@ -301,11 +301,11 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🏠 Internal
 
-- Pin dependencies [#12](https://github.com/pleo-oss/assign-random-codeowners/pull/12) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update jest monorepo [#15](https://github.com/pleo-oss/assign-random-codeowners/pull/15) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update typescript-eslint monorepo to v5.39.0 [#17](https://github.com/pleo-oss/assign-random-codeowners/pull/17) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update actions/checkout action to v3.1.0 [#16](https://github.com/pleo-oss/assign-random-codeowners/pull/16) ([@renovate[bot]](https://github.com/renovate[bot]))
-- Update dependency @swc/core to v1.3.4 [#13](https://github.com/pleo-oss/assign-random-codeowners/pull/13) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Pin dependencies [#12](https://github.com/pleo-io/assign-random-codeowners/pull/12) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update jest monorepo [#15](https://github.com/pleo-io/assign-random-codeowners/pull/15) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update typescript-eslint monorepo to v5.39.0 [#17](https://github.com/pleo-io/assign-random-codeowners/pull/17) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update actions/checkout action to v3.1.0 [#16](https://github.com/pleo-io/assign-random-codeowners/pull/16) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Update dependency @swc/core to v1.3.4 [#13](https://github.com/pleo-io/assign-random-codeowners/pull/13) ([@renovate[bot]](https://github.com/renovate[bot]))
 
 #### Authors: 3
 
@@ -319,11 +319,11 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🐞 Fixes
 
-- Assign team individuals from teams until no team members remain [#10](https://github.com/pleo-oss/assign-random-codeowners/pull/10) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Assign team individuals from teams until no team members remain [#10](https://github.com/pleo-io/assign-random-codeowners/pull/10) ([@andersfischernielsen](https://github.com/andersfischernielsen))
 
 #### 🏠 Internal
 
-- Configure Renovate [#11](https://github.com/pleo-oss/assign-random-codeowners/pull/11) ([@renovate[bot]](https://github.com/renovate[bot]))
+- Configure Renovate [#11](https://github.com/pleo-io/assign-random-codeowners/pull/11) ([@renovate[bot]](https://github.com/renovate[bot]))
 
 #### Authors: 2
 
@@ -336,7 +336,7 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🎁 Features
 
-- Support assigning individuals from reviewer teams [#8](https://github.com/pleo-oss/assign-random-codeowners/pull/8) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Support assigning individuals from reviewer teams [#8](https://github.com/pleo-io/assign-random-codeowners/pull/8) ([@andersfischernielsen](https://github.com/andersfischernielsen))
 
 #### ⚠️ Pushed to `main`
 
@@ -347,8 +347,8 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🏠 Internal
 
-- Restore tsconfig to repository state post-build when releasing [#9](https://github.com/pleo-oss/assign-random-codeowners/pull/9) ([@andersfischernielsen](https://github.com/andersfischernielsen))
-- Improve testing [#3](https://github.com/pleo-oss/assign-random-codeowners/pull/3) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Restore tsconfig to repository state post-build when releasing [#9](https://github.com/pleo-io/assign-random-codeowners/pull/9) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Improve testing [#3](https://github.com/pleo-io/assign-random-codeowners/pull/3) ([@andersfischernielsen](https://github.com/andersfischernielsen))
 
 #### Authors: 1
 
@@ -360,10 +360,10 @@ SyntaxError: Only void and foreign elements can be self closed "app-test" (1:1)
 
 #### 🎁 Features
 
-- Ensure tag presence in release job [#7](https://github.com/pleo-oss/assign-random-codeowners/pull/7) ([@andersfischernielsen](https://github.com/andersfischernielsen))
-- Ensure pushes to main in release [#6](https://github.com/pleo-oss/assign-random-codeowners/pull/6) ([@andersfischernielsen](https://github.com/andersfischernielsen))
-- Ensure production dependencies only in release [#5](https://github.com/pleo-oss/assign-random-codeowners/pull/5) ([@andersfischernielsen](https://github.com/andersfischernielsen))
-- Minimize Action size [#4](https://github.com/pleo-oss/assign-random-codeowners/pull/4) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Ensure tag presence in release job [#7](https://github.com/pleo-io/assign-random-codeowners/pull/7) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Ensure pushes to main in release [#6](https://github.com/pleo-io/assign-random-codeowners/pull/6) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Ensure production dependencies only in release [#5](https://github.com/pleo-io/assign-random-codeowners/pull/5) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Minimize Action size [#4](https://github.com/pleo-io/assign-random-codeowners/pull/4) ([@andersfischernielsen](https://github.com/andersfischernielsen))
 
 #### ⚠️ Pushed to `main`
 
