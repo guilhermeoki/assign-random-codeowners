@@ -7,7 +7,7 @@ const fs_1 = require("fs");
 const codeowners_utils_1 = require("codeowners-utils");
 exports.validPaths = ['CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS'];
 const setup = () => {
-    const toAssign = (0, core_1.getInput)('reviewers-to-assign') || '1';
+    const toAssign = (0, core_1.getInput)('reviewers-to-assign', { required: true });
     const reviewers = Number.parseInt(toAssign);
     const assignFromChanges = (0, core_1.getInput)('assign-from-changed-files') === 'true' || (0, core_1.getInput)('assign-from-changed-files') === 'True';
     const assignIndividuals = (0, core_1.getInput)('assign-individuals-from-teams') === 'true' || (0, core_1.getInput)('assign-individuals-from-teams') === 'True';
@@ -73,7 +73,7 @@ const extractChangedFiles = (assignFromChanges, pullRequest) => async (octokit) 
 };
 exports.extractChangedFiles = extractChangedFiles;
 const randomize = (input) => input?.sort(() => Math.random() - 0.5);
-const isTeam = (selected) => /@.*\//.test(selected);
+const isTeam = (selected) => (selected ? /@.*\//.test(selected) : false);
 const extractTeamSlug = (selected) => selected.replace(/@.*\//, '');
 const fetchTeamMembers = (organisation, codeowners) => async (octokit) => {
     // Ensure that we don't have duplicate IDs in order to fetch as little from GitHub as possible.
@@ -104,7 +104,6 @@ const selectReviewers = async (changedFiles, codeowners, teamMembers, options) =
     const selectedTeams = new Set();
     const selectedUsers = new Set();
     const assignees = () => selectedTeams.size + selectedUsers.size + assignedReviewers;
-    const randomGlobalCodeowner = (owners) => (assignIndividuals ? owners?.[0] : owners?.shift());
     const stack = JSON.parse(JSON.stringify(codeowners)); //Poor man's deep clone.
     const teams = teamMembers && JSON.parse(JSON.stringify(teamMembers));
     const globalCodeowners = stack.find(owner => owner.pattern === '*')?.owners;
@@ -115,7 +114,9 @@ const selectReviewers = async (changedFiles, codeowners, teamMembers, options) =
         const randomFileOwner = randomize(stack.find(owner => owner.pattern === randomFile)?.owners)?.shift();
         (0, core_1.debug)(`Selected random file owner: ${randomFileOwner}`);
         const randomGlobalCodeowners = randomize(globalCodeowners);
-        const selected = randomFileOwner ?? randomGlobalCodeowner(randomGlobalCodeowners);
+        const selected = randomFileOwner ?? randomGlobalCodeowners?.[0];
+        if (!isTeam(selected))
+            randomGlobalCodeowners?.shift();
         (0, core_1.debug)(`Selected: ${selected}`);
         if (author && selected === author) {
             (0, core_1.debug)(`'${selected}' is the author '${author}'. Skipping.`);
@@ -144,8 +145,8 @@ const selectReviewers = async (changedFiles, codeowners, teamMembers, options) =
                 continue;
             }
             (0, core_1.debug)(`Found random team member: ${randomTeamMember}.`);
-            if (randomTeamMember && randomTeamMember === author) {
-                (0, core_1.debug)(`'${randomTeamMember}' is the author '${randomTeamMember}'. Skipping.`);
+            if (randomTeamMember === author) {
+                (0, core_1.debug)(`'${randomTeamMember}' is the author '${author}'. Skipping.`);
                 continue;
             }
             (0, core_1.info)(`Assigning '${randomTeamMember}' from assignee team '${teamSlug}'.`);
