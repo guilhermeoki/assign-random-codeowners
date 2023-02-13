@@ -94,7 +94,7 @@ export const extractChangedFiles =
   }
 
 const randomize = <T>(input?: T[]) => input?.sort(() => Math.random() - 0.5)
-const isTeam = (selected: string) => /@.*\//.test(selected)
+const isTeam = (selected: string | undefined | null) => (selected ? /@.*\//.test(selected) : false)
 const extractTeamSlug = (selected: string) => selected.replace(/@.*\//, '')
 
 export const fetchTeamMembers = (organisation: string, codeowners: CodeOwnersEntry[]) => async (octokit: Api) => {
@@ -140,7 +140,6 @@ export const selectReviewers = async (
   const selectedUsers = new Set<string>()
 
   const assignees = () => selectedTeams.size + selectedUsers.size + assignedReviewers
-  const randomGlobalCodeowner = (owners?: string[]) => (assignIndividuals ? owners?.[0] : owners?.shift())
 
   const stack = JSON.parse(JSON.stringify(codeowners)) as CodeOwnersEntry[] //Poor man's deep clone.
   const teams = teamMembers && (JSON.parse(JSON.stringify(teamMembers)) as TeamMembers)
@@ -153,7 +152,8 @@ export const selectReviewers = async (
     const randomFileOwner = randomize(stack.find(owner => owner.pattern === randomFile)?.owners)?.shift()
     debug(`Selected random file owner: ${randomFileOwner}`)
     const randomGlobalCodeowners = randomize(globalCodeowners)
-    const selected = randomFileOwner ?? randomGlobalCodeowner(randomGlobalCodeowners)
+    const selected = randomFileOwner ?? randomGlobalCodeowners?.[0]
+    if (!isTeam(selected)) randomGlobalCodeowners?.shift()
     debug(`Selected: ${selected}`)
 
     if (author && selected === author) {
@@ -186,6 +186,11 @@ export const selectReviewers = async (
         continue
       }
       debug(`Found random team member: ${randomTeamMember}.`)
+
+      if (randomTeamMember === author) {
+        debug(`'${randomTeamMember}' is the author '${author}'. Skipping.`)
+        continue
+      }
 
       info(`Assigning '${randomTeamMember}' from assignee team '${teamSlug}'.`)
       selectedUsers.add(randomTeamMember)

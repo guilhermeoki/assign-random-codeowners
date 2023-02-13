@@ -524,6 +524,78 @@ describe('Reviewer selection', () => {
     expect(result.users.every(name => name !== options.author)).toBeTruthy()
   })
 
+  it('does not select the author from CODEOWNERS individuals', async () => {
+    const owners = ['globalOwner1', 'globalOwner2', 'globalOwner3']
+    const filesChanged = []
+    const codeowners: CodeOwnersEntry[] = [{ pattern: '*', owners: owners }]
+    const assigned = 0
+    const options: SelectionOptions = {
+      assignedReviewers: assigned,
+      assignIndividuals: true,
+      reviewers: maxAssignees,
+      author: 'globalOwner1',
+    }
+
+    const result = await selectReviewers(filesChanged, codeowners, {}, options)
+
+    expect(result).not.toBeNull()
+    expect(result.count).toEqual(2)
+    expect(result.users.every(name => name !== options.author)).toBeTruthy()
+  })
+
+  it('does not select authors from CODEOWNERS when owners are teams and is asked to assign individuals', async () => {
+    const owners = ['@pleo-io/cool-team']
+    const filesChanged = []
+    const codeowners: CodeOwnersEntry[] = [{ pattern: '*', owners: owners }]
+    const assigned = 0
+    const options: SelectionOptions = {
+      assignedReviewers: assigned,
+      assignIndividuals: true,
+      reviewers: maxAssignees,
+      author: 'globalOwner1',
+    }
+
+    const result = await selectReviewers(
+      filesChanged,
+      codeowners,
+      {
+        '@pleo-io/cool-team': ['globalOwner1', 'globalOwner2', 'globalOwner3'],
+      },
+      options,
+    )
+
+    expect(result).not.toBeNull()
+    expect(result.count).toEqual(2)
+    expect(result.users.every(name => name !== options.author)).toBeTruthy()
+  })
+
+  it('does not select individual authors from CODEOWNERS when owners are teams', async () => {
+    const owners = ['@some-org/cool-team']
+    const filesChanged = []
+    const codeowners: CodeOwnersEntry[] = [{ pattern: '*', owners: owners }]
+    const assigned = 0
+    const options: SelectionOptions = {
+      assignedReviewers: assigned,
+      assignIndividuals: true,
+      reviewers: maxAssignees,
+      author: '@some-author',
+    }
+
+    const result = await selectReviewers(
+      filesChanged,
+      codeowners,
+      {
+        '@some-org/cool-team': ['@some-username'],
+      },
+      options,
+    )
+
+    expect(result).not.toBeNull()
+    expect(result.count).toEqual(1)
+    expect(result.users.every(name => name !== options.author)).toBeTruthy()
+    expect(result.users[0]).toBe('@some-username')
+  })
+
   it('does not loop infinitely when selecting from global one-person CODEOWNER teams', async () => {
     const owners = ['@org/team']
     const filesChanged = []

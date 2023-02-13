@@ -7,7 +7,7 @@ const fs_1 = require("fs");
 const codeowners_utils_1 = require("codeowners-utils");
 exports.validPaths = ['CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS'];
 const setup = () => {
-    const toAssign = (0, core_1.getInput)('reviewers-to-assign', { required: true });
+    const toAssign = (0, core_1.getInput)('reviewers-to-assign') || '1';
     const reviewers = Number.parseInt(toAssign);
     const assignFromChanges = (0, core_1.getInput)('assign-from-changed-files') === 'true' || (0, core_1.getInput)('assign-from-changed-files') === 'True';
     const assignIndividuals = (0, core_1.getInput)('assign-individuals-from-teams') === 'true' || (0, core_1.getInput)('assign-individuals-from-teams') === 'True';
@@ -144,6 +144,10 @@ const selectReviewers = async (changedFiles, codeowners, teamMembers, options) =
                 continue;
             }
             (0, core_1.debug)(`Found random team member: ${randomTeamMember}.`);
+            if (randomTeamMember && randomTeamMember === author) {
+                (0, core_1.debug)(`'${randomTeamMember}' is the author '${randomTeamMember}'. Skipping.`);
+                continue;
+            }
             (0, core_1.info)(`Assigning '${randomTeamMember}' from assignee team '${teamSlug}'.`);
             selectedUsers.add(randomTeamMember);
         }
