@@ -1,73 +1,72 @@
 name: Release
 
-on: 
+on:
   push:
     branches:
-      - 'main'
+      - main
 
 concurrency: ci-${{ github.workflow }}-${{ github.ref }}
-permissions: 
+permissions:
   contents: write
   packages: write
   deployments: write
-  
+
 jobs:
   release:
     runs-on: ubuntu-latest
     name: Release
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        persist-credentials: false
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
 
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: yarn
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
 
-    - name: Install production packages
-      run: |
-        yarn install --production
+      - name: Install production packages
+        run: |
+          yarn install --production
 
-    - name: Remove development types
-      run: |
-        cp tsconfig.json tsconfig-original.json
-        echo "$(cat tsconfig.json | jq '.compilerOptions.types = ["node"]')" > tsconfig.json
-        
-        echo "Modified 'tsconfig.json':"
-        cat tsconfig.json
+      - name: Remove development types
+        run: |
+          cp tsconfig.json tsconfig-original.json
+          echo "$(cat tsconfig.json | jq '.compilerOptions.types = ["node"]')" > tsconfig.json
 
-    - name: Build
-      run: |
-        yarn build
+          echo "Modified 'tsconfig.json':"
+          cat tsconfig.json
 
-    - name: Restore development types
-      run: |
-        mv tsconfig-original.json tsconfig.json
-        
-        echo "Restored 'tsconfig.json':"
-        cat tsconfig.json
+      - name: Build
+        run: |
+          yarn build
 
+      - name: Restore development types
+        run: |
+          mv tsconfig-original.json tsconfig.json
 
-    - name: Setup SSH release token
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          echo "Restored 'tsconfig.json':"
+          cat tsconfig.json
 
-    - name: Add production dependencies
-      uses: EndBug/add-and-commit@v9
-      with: 
-        add: 'node_modules --force'
-        push: false
-      env: 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup SSH release token
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
 
-    - name: Release
-      run: |
-        npx --package=@auto-it/git-tag --package=auto -- auto shipit
-      env: 
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add production dependencies
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "dist node_modules --force"
+          push: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        run: |
+          npx --package=@auto-it/git-tag --package=auto -- auto shipit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
