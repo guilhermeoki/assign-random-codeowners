@@ -1,3 +1,31 @@
+# v0.2.7 (Mon Feb 13 2023)
+
+#### 🐞 Fixes
+
+- Prevent assigning PR authors to their own PRs [#39](https://github.com/pleo-io/assign-random-codeowners/pull/39) ([@marcos-arranz](https://github.com/marcos-arranz))
+
+#### ⚠️ Pushed to `main`
+
+- Commit from GitHub Actions (Release) (andersfischernielsen@users.noreply.github.com)
+- Reset Renovate configuration ([@andersfischernielsen](https://github.com/andersfischernielsen))
+
+#### 🏠 Internal
+
+- Ensure project is built correctly pre-release [#40](https://github.com/pleo-io/assign-random-codeowners/pull/40) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Configure Renovate [#37](https://github.com/pleo-io/assign-random-codeowners/pull/37) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate) [@andersfischernielsen](https://github.com/andersfischernielsen))
+- Rename pleo-oss to pleo-io [#38](https://github.com/pleo-io/assign-random-codeowners/pull/38) ([@jsfr](https://github.com/jsfr))
+- Update dependency @types/jest to v29.2.6 [#36](https://github.com/pleo-io/assign-random-codeowners/pull/36) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+#### Authors: 5
+
+- Anders Fischer-Nielsen ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- andersfischernielsen (andersfischernielsen@users.noreply.github.com)
+- Jens Fredskov ([@jsfr](https://github.com/jsfr))
+- Marcos Arranz ([@marcos-arranz](https://github.com/marcos-arranz))
+- Renovate (Pleo) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+---
+
 # v0.2.6 (Thu Jan 19 2023)
 
 ### Release Notes
