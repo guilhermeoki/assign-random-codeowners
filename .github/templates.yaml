@@ -1,0 +1,9 @@
+version: v20.3.3
+
+files:
+  - .github/.kodiak.toml
+  - .github/workflows/close-stale-prs.yaml
+  - .github/workflows/codeql-analysis.yaml
+  - .github/workflows/pr-help.yaml
+  - .github/workflows/verify-release.yaml
+  
