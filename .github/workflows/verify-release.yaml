@@ -52,12 +52,19 @@ jobs:
       - name: Generate '${{ github.event.repository.default_branch }}' OpenAPI spec
         run: |
           ./gradlew pleo-"$REPOSITORY_NAME"-rest:resolve --stacktrace
-          echo "Using OpenAPI spec path: 'pleo-$REPOSITORY_NAME-rest/**/$REPOSITORY_NAME-openapi.yaml'"
-          mv pleo-"$REPOSITORY_NAME"-rest/**/"$REPOSITORY_NAME"-openapi.yaml existing.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GH_REGISTRY_GRADLE_TOKEN }}
           GRADLE_READ_KEY: ${{ secrets.GH_REGISTRY_GRADLE_TOKEN }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+      - name: Move OpenAPI schema
+        run: |
+          echo "Using OpenAPI spec path: 'pleo-$REPOSITORY_NAME-rest/src'"
+          FILE_PATH="$(find "pleo-$REPOSITORY_NAME-rest/src" -type f -name "$REPOSITORY_NAME-openapi.yaml")"
+          mv "$FILE_PATH" "$NEW_PATH"
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+          NEW_PATH: existing.yaml
 
       - name: Checkout HEAD
         uses: actions/checkout@v3
@@ -69,12 +76,19 @@ jobs:
       - name: Generate 'HEAD' OpenAPI spec
         run: |
           ./gradlew pleo-"$REPOSITORY_NAME"-rest:resolve --stacktrace
-          echo "Using OpenAPI spec path: 'pleo-$REPOSITORY_NAME-rest/**/$REPOSITORY_NAME-openapi.yaml'"
-          mv pleo-"$REPOSITORY_NAME"-rest/**/"$REPOSITORY_NAME"-openapi.yaml generated.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GH_REGISTRY_GRADLE_TOKEN }}
           GRADLE_READ_KEY: ${{ secrets.GH_REGISTRY_GRADLE_TOKEN }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+      - name: Move OpenAPI schema
+        run: |
+          echo "Using OpenAPI spec path: 'pleo-$REPOSITORY_NAME-rest/src'"
+          FILE_PATH="$(find "pleo-$REPOSITORY_NAME-rest/src" -type f -name "$REPOSITORY_NAME-openapi.yaml")"
+          mv "$FILE_PATH" "$NEW_PATH"
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+          NEW_PATH: generated.yaml
 
       - name: Show spec contents
         run: |
@@ -123,45 +137,22 @@ jobs:
         uses: joerick/pr-labels-action@v1.0.7
 
       - name: Add labels for unlabelled PRs
-        if: steps.openapi-diff.outputs.result != 'unknown' && steps.pr-labels.outputs.labels == ''
+        if: ${{ steps.pr-labels.outputs.labels == '' && (steps.openapi-diff.outputs.result != 'unknown' || steps.openapi-diff.outputs.result != '') }}
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: ${{ steps.openapi-diff.outputs.result }}
+
+      - name: Add 'minor' label for non-breaking changes
+        if: contains(steps.pr-labels.outputs.labels, 'minor') != true && steps.openapi-diff.outputs.result == 'minor'
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: ${{ steps.openapi-diff.outputs.result }}
 
       - name: Add 'major' label for breaking changes
-        if: contains(steps.pr-labels.outputs.labels, ' major ') != true && steps.openapi-diff.outputs.result == 'major'
+        if: contains(steps.pr-labels.outputs.labels, 'major') != true && steps.openapi-diff.outputs.result == 'major'
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: ${{ steps.openapi-diff.outputs.result }}
-
-      - name: Find any previous PR comment
-        if: ${{ contains(steps.pr-labels.outputs.labels, ' ${{ steps.openapi-diff.outputs.result }} ') != true }}
-        uses: peter-evans/find-comment@v2
-        id: find-comment
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "github-actions[bot]"
-          body-includes: does not match the detected API changes
-
-      - name: Suggest the detected label for label mismatches
-        id: create-update-comment
-        if: ${{ steps.openapi-diff.outputs.result != 'unknown' && steps.openapi-diff.outputs.result != '' && contains(steps.pr-labels.outputs.labels, ' ${{ steps.openapi-diff.outputs.result }} ') != true }}
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            It looks like the release label of this PR does not match the detected API changes in the PR. 
-            Based on the changes to the API this PR should be labelled `${{ steps.openapi-diff.outputs.result }}`.
-          edit-mode: replace
-
-      - name: Delete the PR comment when no changes are detected
-        continue-on-error: true
-        if: ${{ steps.openapi-diff.outputs.result == 'unknown' && steps.openapi-diff.outputs.result == '' && steps.create-update-comment.outputs.comment-id }}
-        uses: sandeshjangam/comment-actions@v1
-        with:
-          type: "delete"
-          comment_id: ${{ steps.create-update-comment.outputs.comment-id }}
 
   verify-release:
     name: Verify Release
