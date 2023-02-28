@@ -1,4 +1,4 @@
-version: v20.4.0
+version: v20.5.0
 
 files:
   - .github/.kodiak.toml
