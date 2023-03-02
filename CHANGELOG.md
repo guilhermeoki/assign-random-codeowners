@@ -1,3 +1,492 @@
+# v0.2.8 (Thu Mar 02 2023)
+
+### Release Notes
+
+#### Update dependency pleo-io/centralized-templates to v20.3.4 ([#47](https://github.com/pleo-io/assign-random-codeowners/pull/47))
+
+<details>
+<summary>pleo-io/centralized-templates</summary>
+
+### [`v20.3.4`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v2034-Wed-Feb-15-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.3.3...v20.3.4)
+
+
+##### Fix typos in PR comments made in deploy workflows ([#&#8203;652](https://togithub.com/pleo-io/centralized-templates/pull/652))
+
+Fix typos in PR comments made in deploy workflows.
+
+***
+
+##### 🐞 Fixes
+
+-   Fix typos in PR comments made in deploy workflows [#&#8203;652](https://togithub.com/pleo-io/centralized-templates/pull/652) (jasenko.hadziomeragic@pleo.io [@&#8203;jasenkoh](https://togithub.com/jasenkoh))
+
+##### Authors: 2
+
+-   Jasenko Hadziomeragic ([@&#8203;jasenkoh](https://togithub.com/jasenkoh))
+-   jasenkoh (jasenko.hadziomeragic@pleo.io)
+
+***
+
+</details>
+
+---
+
+#### Update jest monorepo ([#48](https://github.com/pleo-io/assign-random-codeowners/pull/48))
+
+<details>
+<summary>facebook/jest</summary>
+
+### [`v29.4.3`](https://togithub.com/facebook/jest/blob/HEAD/CHANGELOG.md#&#8203;2943)
+
+[Compare Source](https://togithub.com/facebook/jest/compare/v29.4.2...v29.4.3)
+
+##### Features
+
+-   `[expect]` Update `toThrow()` to be able to use error `cause`s ([#&#8203;13606](https://togithub.com/facebook/jest/pull/13606))
+-   `[jest-core]` allow to use `workerIdleMemoryLimit` with only 1 worker or `runInBand` option ([#&#8203;13846](https://togithub.com/facebook/jest/pull/13846))
+-   `[jest-message-util]` Add support for [error `cause`s](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause) ([#&#8203;13868](https://togithub.com/facebook/jest/pull/13868) & [#&#8203;13912](https://togithub.com/facebook/jest/pull/13912))
+-   `[jest-runtime]` Revert `import assertions` for JSON modules as it's been relegated to Stage 2 ([#&#8203;13911](https://togithub.com/facebook/jest/pull/13911))
+
+##### Fixes
+
+-   `[@jest/expect-utils]` `subsetEquality` should consider also an object's inherited string keys ([#&#8203;13824](https://togithub.com/facebook/jest/pull/13824))
+-   `[jest-mock]` Clear mock state when `jest.restoreAllMocks()` is called ([#&#8203;13867](https://togithub.com/facebook/jest/pull/13867))
+-   `[jest-mock]` Prevent `mockImplementationOnce` and `mockReturnValueOnce` bleeding into `withImplementation` ([#&#8203;13888](https://togithub.com/facebook/jest/pull/13888))
+-   `[jest-mock]` Do not restore mocks when `jest.resetAllMocks()` is called ([#&#8203;13866](https://togithub.com/facebook/jest/pull/13866))
+
+### [`v29.4.2`](https://togithub.com/facebook/jest/blob/HEAD/CHANGELOG.md#&#8203;2942)
+
+[Compare Source](https://togithub.com/facebook/jest/compare/v29.4.1...v29.4.2)
+
+##### Features
+
+-   `[@jest/core]` Instrument significant lifecycle events with [`performance.mark()`](https://nodejs.org/docs/latest-v16.x/api/perf_hooks.html#performancemarkname-options) ([#&#8203;13859](https://togithub.com/facebook/jest/pull/13859))
+
+##### Fixes
+
+-   `[expect, @&#8203;jest/expect]` Provide type of `actual` as a generic argument to `Matchers` to allow better-typed extensions ([#&#8203;13848](https://togithub.com/facebook/jest/pull/13848))
+-   `[jest-circus]` Added explicit mention of test failing because `done()` is not being called in error message ([#&#8203;13847](https://togithub.com/facebook/jest/pull/13847))
+-   `[jest-runtime]` Handle CJS re-exports of node core modules from ESM ([#&#8203;13856](https://togithub.com/facebook/jest/pull/13856))
+-   `[jest-transform]` Downgrade `write-file-atomic` to v4 ([#&#8203;13853](https://togithub.com/facebook/jest/pull/13853))
+-   `[jest-worker]` Ignore IPC messages not intended for Jest ([#&#8203;13543](https://togithub.com/facebook/jest/pull/13543))
+
+##### Chore & Maintenance
+
+-   `[*]` make sure to exclude `.eslintcache` from published module ([#&#8203;13832](https://togithub.com/facebook/jest/pull/13832))
+-   `[docs]` Cleanup incorrect links in CHANGELOG.md ([#&#8203;13857](https://togithub.com/facebook/jest/pull/13857))
+
+### [`v29.4.1`](https://togithub.com/facebook/jest/blob/HEAD/CHANGELOG.md#&#8203;2941)
+
+[Compare Source](https://togithub.com/facebook/jest/compare/v29.4.0...v29.4.1)
+
+##### Features
+
+-   `[expect, jest-circus, @&#8203;jest/types]` Implement `numPassingAsserts` of testResults to track the number of passing asserts in a test ([#&#8203;13795](https://togithub.com/facebook/jest/pull/13795))
+-   `[jest-core]` Add newlines to JSON output ([#&#8203;13817](https://togithub.com/facebook/jest/pull/13817))
+-   `[@jest/reporters]` Automatic log folding in GitHub Actions Reporter ([#&#8203;13626](https://togithub.com/facebook/jest/pull/13626))
+
+##### Fixes
+
+-   `[@jest/expect-utils]` `toMatchObject` diffs should include `Symbol` properties ([#&#8203;13810](https://togithub.com/facebook/jest/pull/13810))
+-   `[jest-runtime]` Handle missing `replaceProperty` ([#&#8203;13823](https://togithub.com/facebook/jest/pull/13823))
+-   `[@jest/types]` Add partial support for `done` callbacks in typings of `each` ([#&#8203;13756](https://togithub.com/facebook/jest/pull/13756))
+
+### [`v29.4.0`](https://togithub.com/facebook/jest/blob/HEAD/CHANGELOG.md#&#8203;2940)
+
+[Compare Source](https://togithub.com/facebook/jest/compare/v29.3.1...v29.4.0)
+
+##### Features
+
+-   `[expect, @&#8203;jest/expect-utils]` Support custom equality testers ([#&#8203;13654](https://togithub.com/facebook/jest/pull/13654))
+-   `[jest-config, jest-worker]` Use `os.availableParallelism` if available to calculate number of workers to spawn ([#&#8203;13738](https://togithub.com/facebook/jest/pull/13738))
+-   `[@jest/globals, jest-mock]` Add `jest.replaceProperty()` that replaces property value ([#&#8203;13496](https://togithub.com/facebook/jest/pull/13496))
+-   `[jest-haste-map]` ignore Sapling vcs directories (`.sl/`) ([#&#8203;13674](https://togithub.com/facebook/jest/pull/13674))
+-   `[jest-resolve]` Support subpath imports ([#&#8203;13705](https://togithub.com/facebook/jest/pull/13705), [#&#8203;13723](https://togithub.com/facebook/jest/pull/13723), [#&#8203;13777](https://togithub.com/facebook/jest/pull/13777))
+-   `[jest-runtime]` Add `jest.isolateModulesAsync` for scoped module initialization of asynchronous functions ([#&#8203;13680](https://togithub.com/facebook/jest/pull/13680))
+-   `[jest-runtime]` Add `jest.isEnvironmentTornDown` function ([#&#8203;13741](https://togithub.com/facebook/jest/pull/13741))
+-   `[jest-test-result]` Added `skipped` and `focused` status to `FormattedTestResult` ([#&#8203;13700](https://togithub.com/facebook/jest/pull/13700))
+-   `[jest-transform]` Support for asynchronous `createTransformer` ([#&#8203;13762](https://togithub.com/facebook/jest/pull/13762))
+
+##### Fixes
+
+-   `[jest-environment-node]` Fix non-configurable globals ([#&#8203;13687](https://togithub.com/facebook/jest/pull/13687))
+-   `[@jest/expect-utils]` `toMatchObject` should handle `Symbol` properties ([#&#8203;13639](https://togithub.com/facebook/jest/pull/13639))
+-   `[jest-mock]` Fix `mockReset` and `resetAllMocks` `undefined` return value([#&#8203;13692](https://togithub.com/facebook/jest/pull/13692))
+-   `[jest-resolve]` Add global paths to `require.resolve.paths` ([#&#8203;13633](https://togithub.com/facebook/jest/pull/13633))
+-   `[jest-resolve]` Correct node core module detection when using `node:` specifiers ([#&#8203;13806](https://togithub.com/facebook/jest/pull/13806))
+-   `[jest-runtime]` Support WASM files that import JS resources ([#&#8203;13608](https://togithub.com/facebook/jest/pull/13608))
+-   `[jest-runtime]` Use the `scriptTransformer` cache in `jest-runner` ([#&#8203;13735](https://togithub.com/facebook/jest/pull/13735))
+-   `[jest-runtime]` Enforce import assertions when importing JSON in ESM ([#&#8203;12755](https://togithub.com/facebook/jest/pull/12755) & [#&#8203;13805](https://togithub.com/facebook/jest/pull/13805))
+-   `[jest-snapshot]` Make sure to import `babel` outside of the sandbox ([#&#8203;13694](https://togithub.com/facebook/jest/pull/13694))
+-   `[jest-transform]` Ensure the correct configuration is passed to preprocessors specified multiple times in the `transform` option ([#&#8203;13770](https://togithub.com/facebook/jest/pull/13770))
+
+##### Chore & Maintenance
+
+-   `[@jest/fake-timers]` Update `@sinonjs/fake-timers` ([#&#8203;13612](https://togithub.com/facebook/jest/pull/13612))
+-   `[docs]` Improve custom puppeteer example to prevent worker warnings ([#&#8203;13619](https://togithub.com/facebook/jest/pull/13619))
+
+</details>
+
+---
+
+#### Update dependency typescript to v4.9.5 ([#45](https://github.com/pleo-io/assign-random-codeowners/pull/45))
+
+<details>
+<summary>Microsoft/TypeScript</summary>
+
+#### Update dependency eslint to v8.34.0 ([#46](https://github.com/pleo-io/assign-random-codeowners/pull/46))
+
+<details>
+<summary>eslint/eslint</summary>
+
+#### Update dependency @swc/core to v1.3.35 ([#42](https://github.com/pleo-io/assign-random-codeowners/pull/42))
+
+<details>
+<summary>swc-project/swc</summary>
+
+### [`v1.3.35`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1335---2023-02-10)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.34...v1.3.35)
+
+##### Bug Fixes
+
+-   **(es/minifier)** Don't skip shorthand properties from sequential inliner ([#&#8203;6918](https://togithub.com/swc-project/swc/issues/6918)) ([725d3fb](https://togithub.com/swc-project/swc/commit/725d3fb645976681bc11b1df943f3ca1008788ab))
+
+-   **(es/preset-env)** Fix default target ([#&#8203;6921](https://togithub.com/swc-project/swc/issues/6921)) ([85a8def](https://togithub.com/swc-project/swc/commit/85a8defc37ce20b051b1bf2139ead7182d496483))
+
+-   **(es/typescript)** Fix handling of non-uppercase JSX elements ([#&#8203;6928](https://togithub.com/swc-project/swc/issues/6928)) ([ebc65c7](https://togithub.com/swc-project/swc/commit/ebc65c7dcba4ccfeb7c0a1e200b5130bc8a15791))
+
+##### Miscellaneous Tasks
+
+-   **general**: Bump swc_css_\* ([#&#8203;6924](https://togithub.com/swc-project/swc/issues/6924)) ([75376cd](https://togithub.com/swc-project/swc/commit/75376cd65cf10e9777aab5e00abf9f851a222a49))
+
+### [`v1.3.34`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1334---2023-02-08)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.32...v1.3.34)
+
+##### Bug Fixes
+
+-   **(bindings)** Don't require unnecessary package ([#&#8203;6902](https://togithub.com/swc-project/swc/issues/6902)) ([964dfba](https://togithub.com/swc-project/swc/commit/964dfbaf1ab018d26d4acc574bd4fce5272bf890))
+
+-   **(bindings/node)** Add `esnext` to `JscTarget` ([#&#8203;6908](https://togithub.com/swc-project/swc/issues/6908)) ([82128e3](https://togithub.com/swc-project/swc/commit/82128e3734f8f5a92e85ed748e92f4f62bb4c63f))
+
+-   **(css/modules)** Fix interop of `&` and `:global` ([#&#8203;6900](https://togithub.com/swc-project/swc/issues/6900)) ([f85ea9c](https://togithub.com/swc-project/swc/commit/f85ea9cb570ee9431926fb51559ecd34a701384f))
+
+-   **(es/minifier)** Respect span hygiene from expr simplifier ([#&#8203;6899](https://togithub.com/swc-project/swc/issues/6899)) ([432dca6](https://togithub.com/swc-project/swc/commit/432dca647b5ab6d083d1cedbf68d6afc511f84fe))
+
+-   **(es/minifier)** Don't break ternary with assignment in test ([#&#8203;6906](https://togithub.com/swc-project/swc/issues/6906)) ([951dafb](https://togithub.com/swc-project/swc/commit/951dafbc1a56b8b29fd76aaad8138e58eaadda12))
+
+-   **(es/module)** Fix SystemJS imports ([#&#8203;6879](https://togithub.com/swc-project/swc/issues/6879)) ([85fffda](https://togithub.com/swc-project/swc/commit/85fffdad022cf1bccf8763e7bb73fb15f62d2430))
+
+-   **(es/parser)** Fix stack overflow due to deeply nested if ([#&#8203;6910](https://togithub.com/swc-project/swc/issues/6910)) ([f36d945](https://togithub.com/swc-project/swc/commit/f36d945a33418e991d3ebee27956976ffd5ef446))
+
+-   **(es/parser)** Don't use `stacker` for armv7 ([#&#8203;6916](https://togithub.com/swc-project/swc/issues/6916)) ([4c5d5a6](https://togithub.com/swc-project/swc/commit/4c5d5a6fcaf49782effc6079bb92adec45ceb83c))
+
+-   **(es/resolver)** Resolve parameters correctly ([#&#8203;6890](https://togithub.com/swc-project/swc/issues/6890)) ([861d87c](https://togithub.com/swc-project/swc/commit/861d87cae622f371ea697b1cb07ed79d32579b74))
+
+-   **(es/typescript)** Ignore jsx element names ([#&#8203;6911](https://togithub.com/swc-project/swc/issues/6911)) ([ee3a107](https://togithub.com/swc-project/swc/commit/ee3a1071a5dbe0f2b718dd4f2e9959076cfa337c))
+
+##### Documentation
+
+-   **(readme)** Split download badge ([#&#8203;6917](https://togithub.com/swc-project/swc/issues/6917)) ([d779927](https://togithub.com/swc-project/swc/commit/d779927b4d00a19b3eb2b6cb792a682cbc006970))
+
+##### Features
+
+-   **(bindings/cli)** Add `--config` ([#&#8203;6835](https://togithub.com/swc-project/swc/issues/6835)) ([d993c4d](https://togithub.com/swc-project/swc/commit/d993c4def65b0bf900a6b8b8f0d0dee44ba8e0c8))
+
+-   **(bindings/cli)** Support for *.mts/*.cts files ([#&#8203;6909](https://togithub.com/swc-project/swc/issues/6909)) ([76bc8a2](https://togithub.com/swc-project/swc/commit/76bc8a29743edf397c59f5283aaa74a08e8fba57))
+
+##### Miscellaneous Tasks
+
+-   **(bindings/cli)** Enable `preferUnplugged` by default for the plugins ([#&#8203;6912](https://togithub.com/swc-project/swc/issues/6912)) ([17f1c50](https://togithub.com/swc-project/swc/commit/17f1c50287c798b57a0d2ac2a95ba6c864b1c2d7))- **general**: Make issue templates mention `no +1` ([#&#8203;6894](https://togithub.com/swc-project/swc/issues/6894)) ([5d5140f](https://togithub.com/swc-project/swc/commit/5d5140f0a50696d747ee62e72866b9b03e52cde3))
+
+##### Testing
+
+-   **(es/module)** Add a test for `jsc.paths` on windows ([#&#8203;6915](https://togithub.com/swc-project/swc/issues/6915)) ([d18027c](https://togithub.com/swc-project/swc/commit/d18027cf9b6c45a7b70cf3dd4c3a23b81d92c93a))
+
+### [`v1.3.32`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1332---2023-02-01)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.31...v1.3.32)
+
+##### Bug Fixes
+
+-   **(es)** Remove useless message ([#&#8203;6882](https://togithub.com/swc-project/swc/issues/6882)) ([9301703](https://togithub.com/swc-project/swc/commit/93017033117ff0c89d9a7a992d7a8834ee030227))
+
+-   **(es/compat)** Make optional chaining pass less permissive ([#&#8203;6885](https://togithub.com/swc-project/swc/issues/6885)) ([57781e9](https://togithub.com/swc-project/swc/commit/57781e90d39915e3772757162f70767ff57bfbdd))
+
+##### Testing
+
+-   **(es/compat)** Add a test for a fixed issue ([#&#8203;6887](https://togithub.com/swc-project/swc/issues/6887)) ([e79d466](https://togithub.com/swc-project/swc/commit/e79d46697c9ffb6f93976457f949a5168a59327a))
+
+##### Build
+
+-   **(cargo)** Drop dependencies on `retain_mut` ([#&#8203;6884](https://togithub.com/swc-project/swc/issues/6884)) ([d6a24a2](https://togithub.com/swc-project/swc/commit/d6a24a28e88ff22f6aea8169927c64d8cbe7fb95))
+
+### [`v1.3.31`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1331---2023-01-30)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.30...v1.3.31)
+
+##### Bug Fixes
+
+-   **(es/compat)** Fix optional chaining pass ([#&#8203;6875](https://togithub.com/swc-project/swc/issues/6875)) ([d808864](https://togithub.com/swc-project/swc/commit/d8088646df1e8ebc7d1fd8b0b0e4822bc604a986))
+
+-   **(visit)** Fix detection of `Option<Vec<T>>` ([#&#8203;6872](https://togithub.com/swc-project/swc/issues/6872)) ([508267d](https://togithub.com/swc-project/swc/commit/508267dccf479f114234f01f8d77db74b91bdb85))
+
+##### Features
+
+-   **(bindings/cli)** Append `sourceMappingURL=` to the output ([#&#8203;6873](https://togithub.com/swc-project/swc/issues/6873)) ([c4db8e4](https://togithub.com/swc-project/swc/commit/c4db8e42a154bd41b54354fc8c2891764fbb724f))
+
+-   **(es/loader)** Support `node:` prefix from `NodeModulesResolver` ([#&#8203;6868](https://togithub.com/swc-project/swc/issues/6868)) ([6b7249d](https://togithub.com/swc-project/swc/commit/6b7249dcde964d4cefba8531515c93b07d6dbcd9))
+
+### [`v1.3.30`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1330---2023-01-28)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.29...v1.3.30)
+
+##### Bug Fixes
+
+-   **(es/minifier)** Track reassign in parent scope ([#&#8203;6865](https://togithub.com/swc-project/swc/issues/6865)) ([c0e72ef](https://togithub.com/swc-project/swc/commit/c0e72ef64ad9925c9dffda3b0ff261682f6054ed))
+
+-   **(es/module)** Fix handling of `this` for `systemjs` ([#&#8203;6857](https://togithub.com/swc-project/swc/issues/6857)) ([39c75fd](https://togithub.com/swc-project/swc/commit/39c75fdcce4ae63a2320bfaac4c2369799729051))
+
+-   **(es/parser)** Fix parsing of generics ([#&#8203;6859](https://togithub.com/swc-project/swc/issues/6859)) ([60d9403](https://togithub.com/swc-project/swc/commit/60d9403073f2d24df275325e854a0ab2dc1bf448))
+
+##### Features
+
+-   **(es/minifier)** Improve compatibility of `arrows` with `terser` ([#&#8203;6862](https://togithub.com/swc-project/swc/issues/6862)) ([d1687d8](https://togithub.com/swc-project/swc/commit/d1687d8e0128ad534b551ebbb7f8445abe3144c2))
+
+##### Miscellaneous Tasks
+
+-   **(ci)** FIx CI ([#&#8203;6861](https://togithub.com/swc-project/swc/issues/6861)) ([45cdfed](https://togithub.com/swc-project/swc/commit/45cdfed6c818ad7da2cf202a46abfbd06dda95eb))
+
+### [`v1.3.29`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1329---2023-01-26)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.28...v1.3.29)
+
+##### Bug Fixes
+
+-   **(plugin)** Make `span_to_source` use dedicated function ([#&#8203;6853](https://togithub.com/swc-project/swc/issues/6853)) ([99d48e3](https://togithub.com/swc-project/swc/commit/99d48e305ef73352efc41bc134a10750b1d724bc))
+
+##### Refactor
+
+-   **(es/minifier)** Merge `cond_init` with `reassigned` ([#&#8203;6850](https://togithub.com/swc-project/swc/issues/6850)) ([55225cb](https://togithub.com/swc-project/swc/commit/55225cb994d6cb0cfaae4cee77905f17ec6e37c7))
+
+### [`v1.3.28`](https://togithub.com/swc-project/swc/blob/HEAD/CHANGELOG.md#&#8203;1328---2023-01-24)
+
+[Compare Source](https://togithub.com/swc-project/swc/compare/v1.3.27...v1.3.28)
+
+##### Bug Fixes
+
+-   **(es/codegen)** Fix codegen of string literals with `\x000` ([#&#8203;6838](https://togithub.com/swc-project/swc/issues/6838)) ([df70261](https://togithub.com/swc-project/swc/commit/df702614e1c23ee119d26beeb1b3abd454d7add0))
+
+-   **(es/minifier)** Don't inline into `await` from sequential inliner ([#&#8203;6839](https://togithub.com/swc-project/swc/issues/6839)) ([21e1478](https://togithub.com/swc-project/swc/commit/21e14787c521cc1f808c9b71e8671820a79bd12f))
+
+##### Miscellaneous Tasks
+
+-   **(ci)** Make stale action to wait 30 days ([#&#8203;6828](https://togithub.com/swc-project/swc/issues/6828)) ([1ef2347](https://togithub.com/swc-project/swc/commit/1ef2347bdf6901ea6d1e8629ba08611421d19c3e))
+
+##### Performance
+
+-   **(es/minifier)** Make pure function check `O(1)` ([#&#8203;6840](https://togithub.com/swc-project/swc/issues/6840)) ([58208ef](https://togithub.com/swc-project/swc/commit/58208ef8aee994591f05d996a8b660da6e96d681))
+
+##### Refactor
+
+-   **(es/preset-env)** Use a const fn instead of a macro ([#&#8203;6844](https://togithub.com/swc-project/swc/issues/6844)) ([2fcab36](https://togithub.com/swc-project/swc/commit/2fcab36418b7cf0869a1a256dc927d3ccdbe35cd))
+
+-   **(es/typescript)** Remove unused code ([#&#8203;6830](https://togithub.com/swc-project/swc/issues/6830)) ([7205543](https://togithub.com/swc-project/swc/commit/7205543d5f58e2aaa8ef8ba0820c2f05726001d1))
+
+</details>
+
+---
+
+#### Update dependency prettier to v2.8.4 ([#43](https://github.com/pleo-io/assign-random-codeowners/pull/43))
+
+<details>
+<summary>prettier/prettier</summary>
+
+### [`v2.8.4`](https://togithub.com/prettier/prettier/blob/HEAD/CHANGELOG.md#&#8203;284)
+
+[Compare Source](https://togithub.com/prettier/prettier/compare/2.8.3...2.8.4)
+
+[diff](https://togithub.com/prettier/prettier/compare/2.8.3...2.8.4)
+
+##### Fix leading comments in mapped types with `readonly` ([#&#8203;13427](https://togithub.com/prettier/prettier/pull/13427) by [@&#8203;thorn0](https://togithub.com/thorn0), [@&#8203;sosukesuzuki](https://togithub.com/sosukesuzuki))
+
+<!-- prettier-ignore -->
+
+```tsx
+// Input
+type Type = {
+  // comment
+  readonly [key in Foo];
+};
+
+// Prettier 2.8.3
+type Type = {
+  readonly // comment
+  [key in Foo];
+};
+
+// Prettier 2.8.4
+type Type = {
+  // comment
+  readonly [key in Foo];
+};
+```
+
+##### Group params in opening block statements ([#&#8203;14067](https://togithub.com/prettier/prettier/pull/14067) by [@&#8203;jamescdavis](https://togithub.com/jamescdavis))
+
+This is a follow-up to [#&#8203;13930](https://togithub.com/prettier/prettier/issues/13930) to establish wrapping consistency between opening block statements and else blocks by
+grouping params in opening blocks. This causes params to break to a new line together and not be split across lines
+unless the length of params exceeds the print width. This also updates the else block wrapping to behave exactly the
+same as opening blocks.
+
+<!-- prettier-ignore -->
+
+```hbs
+{{! Input }}
+{{#block param param param param param param param param param param as |blockParam|}}
+  Hello
+{{else block param param param param param param param param param param as |blockParam|}}
+  There
+{{/block}}
+
+{{! Prettier 2.8.3 }}
+{{#block
+  param
+  param
+  param
+  param
+  param
+  param
+  param
+  param
+  param
+  param
+  as |blockParam|
+}}
+  Hello
+{{else block param
+param
+param
+param
+param
+param
+param
+param
+param
+param}}
+  There
+{{/block}}
+
+{{! Prettier 2.8.4 }}
+{{#block
+  param param param param param param param param param param
+  as |blockParam|
+}}
+  Hello
+{{else block
+  param param param param param param param param param param
+  as |blockParam|
+}}
+  There
+{{/block}}
+```
+
+##### Ignore files in `.sl/` ([#&#8203;14206](https://togithub.com/prettier/prettier/pull/14206) by [@&#8203;bolinfest](https://togithub.com/bolinfest))
+
+In [Sapling SCM](https://sapling-scm.com/), `.sl/` is the folder where it stores its state, analogous to `.git/` in Git. It should be ignored in Prettier like the other SCM folders.
+
+##### Recognize `@satisfies` in Closure-style type casts ([#&#8203;14262](https://togithub.com/prettier/prettier/pull/14262) by [@&#8203;fisker](https://togithub.com/fisker))
+
+<!-- prettier-ignore -->
+
+```jsx
+// Input
+const a = /** @&#8203;satisfies {Record<string, string>} */ ({hello: 1337});
+const b = /** @&#8203;type {Record<string, string>} */ ({hello: 1337});
+
+// Prettier 2.8.3
+const a = /** @&#8203;satisfies {Record<string, string>} */ { hello: 1337 };
+const b = /** @&#8203;type {Record<string, string>} */ ({ hello: 1337 });
+
+// Prettier 2.8.4
+const a = /** @&#8203;satisfies {Record<string, string>} */ ({hello: 1337});
+const b = /** @&#8203;type {Record<string, string>} */ ({hello: 1337});
+```
+
+##### Fix parens in inferred function return types with `extends` ([#&#8203;14279](https://togithub.com/prettier/prettier/pull/14279) by [@&#8203;fisker](https://togithub.com/fisker))
+
+<!-- prettier-ignore -->
+
+```ts
+// Input
+type Foo<T> = T extends ((a) => a is infer R extends string) ? R : never;
+
+// Prettier 2.8.3 (First format)
+type Foo<T> = T extends (a) => a is infer R extends string ? R : never;
+
+// Prettier 2.8.3 (Second format)
+SyntaxError: '?' expected. 
+
+// Prettier 2.8.4
+type Foo<T> = T extends ((a) => a is infer R extends string) ? R : never;
+```
+
+</details>
+
+---
+
+---
+
+#### 🐞 Fixes
+
+- Add 'environment' to release job so Github can track deployments [#53](https://github.com/pleo-io/assign-random-codeowners/pull/53) ([@VictorPascualV](https://github.com/VictorPascualV) [@kodiakhq[bot]](https://github.com/kodiakhq[bot]))
+
+#### ⚠️ Pushed to `main`
+
+- Commit from GitHub Actions (Release) (VictorPascualV@users.noreply.github.com)
+- Update dependency pleo-io/centralized-templates to v20.5.2 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.5.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.54.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.37 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.4.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.35.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.3.7 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.53.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.36 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.3.6 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.3.5 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.52.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Create templates.yaml ([@andersfischernielsen](https://github.com/andersfischernielsen))
+
+#### 🏠 Internal
+
+- Update files based on repository configuration [#54](https://github.com/pleo-io/assign-random-codeowners/pull/54) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#51](https://github.com/pleo-io/assign-random-codeowners/pull/51) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#50](https://github.com/pleo-io/assign-random-codeowners/pull/50) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]) [@kodiakhq[bot]](https://github.com/kodiakhq[bot]))
+- Update files based on repository configuration [#49](https://github.com/pleo-io/assign-random-codeowners/pull/49) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update dependency pleo-io/centralized-templates to v20.3.4 [#47](https://github.com/pleo-io/assign-random-codeowners/pull/47) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update jest monorepo [#48](https://github.com/pleo-io/assign-random-codeowners/pull/48) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency typescript to v4.9.5 [#45](https://github.com/pleo-io/assign-random-codeowners/pull/45) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.34.0 [#46](https://github.com/pleo-io/assign-random-codeowners/pull/46) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate) [@kodiakhq[bot]](https://github.com/kodiakhq[bot]))
+- Update dependency @swc/core to v1.3.35 [#42](https://github.com/pleo-io/assign-random-codeowners/pull/42) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate) [@kodiakhq[bot]](https://github.com/kodiakhq[bot]))
+- Update files based on repository configuration [#44](https://github.com/pleo-io/assign-random-codeowners/pull/44) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]) [@marcos-arranz](https://github.com/marcos-arranz))
+- Update dependency prettier to v2.8.4 [#43](https://github.com/pleo-io/assign-random-codeowners/pull/43) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate) [@andersfischernielsen](https://github.com/andersfischernielsen))
+
+#### Authors: 7
+
+- [@kodiakhq[bot]](https://github.com/kodiakhq[bot])
+- [@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot])
+- Anders Fischer-Nielsen ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Marcos Arranz ([@marcos-arranz](https://github.com/marcos-arranz))
+- Renovate (Pleo) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Victor Pascual ([@VictorPascualV](https://github.com/VictorPascualV))
+- VictorPascualV (VictorPascualV@users.noreply.github.com)
+
+---
+
 # v0.2.7 (Mon Feb 13 2023)
 
 #### 🐞 Fixes
