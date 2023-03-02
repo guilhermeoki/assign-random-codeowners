@@ -14,41 +14,16 @@ on:
       - main
 
 jobs:
-  languages:
-    name: Get repository languages
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    outputs:
-      lang: ${{ steps.repo-languages.outputs.lang }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Repo Languages
-        id: repo-languages
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api repos/${{ github.repository }} > repo_metadata.json
-          echo "lang=$(jq -r '.language' repo_metadata.json)" >> "$GITHUB_OUTPUT"
-
   analyze-java:
+    timeout-minutes: 30
     name: Analyze Java or Kotlin
-    needs:
-      - languages
+    continue-on-error: true
     runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
       security-events: write
-    if: needs.languages.outputs.lang == 'Kotlin' || needs.languages.outputs.lang == 'Java'
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-          - java
+    if: ${{ github.event.repository.language == 'Kotlin' || github.event.repository.language == 'Java' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -79,7 +54,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language }}
+          languages: ${{ github.event.repository.language }}
           ram: 4096
 
       - name: Gradle Build
@@ -92,23 +67,18 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           ram: 4096
-          category: "/language:${{matrix.language}}"
+          category: "/language:java"
 
   analyze-javascript:
     name: Analyze Javascript
-    needs:
-      - languages
+    timeout-minutes: 30
+    continue-on-error: true
     runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
       security-events: write
-    if: needs.languages.outputs.lang == 'TypeScript' || needs.languages.outputs.lang == 'JavaScript'
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-          - javascript
+    if: ${{ github.event.repository.language == 'TypeScript' || github.event.repository.language == 'JavaScript' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -123,27 +93,23 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language }}
+          languages: ${{ github.event.repository.language }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
-          category: "/language:${{matrix.language}}"
+          category: "/language:javascript"
 
   analyze-python:
+    timeout-minutes: 30
     name: Analyze Python
-    needs:
-      - languages
+    continue-on-error: true
     runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
       security-events: write
-    if: needs.languages.outputs.lang == 'Python'
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["python"]
+    if: ${{ github.event.repository.language == 'Python' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -152,28 +118,23 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language }}
+          languages: ${{ github.event.repository.language }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
-          category: "/language:${{matrix.language}}"
+          category: "/language:python"
 
   analyze-go:
     name: Analyze Go
-    needs:
-      - languages
+    timeout-minutes: 30
+    continue-on-error: true
     runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
       security-events: write
-    if: needs.languages.outputs.lang == 'Go'
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-          - go
+    if: ${{ github.event.repository.language == 'Go' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -182,9 +143,9 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
-          languages: ${{ matrix.language }}
+          languages: ${{ github.event.repository.language }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
-          category: "/language:${{matrix.language}}"
+          category: "/language:go"

@@ -28,6 +28,7 @@ concurrency:
 
 jobs:
   validate-pr:
+    timeout-minutes: 5
     name: Validate PR
     permissions: write-all
     runs-on: ubuntu-latest
