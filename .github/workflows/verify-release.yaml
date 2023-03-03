@@ -60,7 +60,7 @@ jobs:
       - name: Move OpenAPI schema
         run: |
           echo "Using OpenAPI spec path: 'pleo-$REPOSITORY_NAME-rest'"
-          FILE_PATH="$(find "pleo-$REPOSITORY_NAME-rest" -type f -name "$REPOSITORY_NAME-openapi.yaml")"
+          FILE_PATH="$(find "pleo-$REPOSITORY_NAME-rest" -type f -name "$REPOSITORY_NAME-openapi.yaml" -not -path "pleo-$REPOSITORY_NAME-rest/build/*")"
           mv "$FILE_PATH" "$NEW_PATH"
         env:
           REPOSITORY_NAME: ${{ github.event.repository.name }}
@@ -84,7 +84,7 @@ jobs:
       - name: Move OpenAPI schema
         run: |
           echo "Using OpenAPI spec path: 'pleo-$REPOSITORY_NAME-rest'"
-          FILE_PATH="$(find "pleo-$REPOSITORY_NAME-rest" -type f -name "$REPOSITORY_NAME-openapi.yaml")"
+          FILE_PATH="$(find "pleo-$REPOSITORY_NAME-rest" -type f -name "$REPOSITORY_NAME-openapi.yaml" -not -path "pleo-$REPOSITORY_NAME-rest/build/*")"
           mv "$FILE_PATH" "$NEW_PATH"
         env:
           REPOSITORY_NAME: ${{ github.event.repository.name }}
