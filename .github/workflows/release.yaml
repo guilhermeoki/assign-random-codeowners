@@ -63,6 +63,10 @@ jobs:
         with:
           add: "dist node_modules --force"
           push: false
+          message: Add production dependencies [skip ci]
+          author_name: pleo-bot-auto-versioning
+          author_email: ops+auto_versioning@pleo.io
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
