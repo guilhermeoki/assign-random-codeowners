@@ -22,7 +22,7 @@ concurrency:
 jobs:
   auto-version-pr:
     name: Detect OpenAPI changes
-    if: ${{ (github.event.repository.language == 'Kotlin' || github.event.repository.language == 'Java') && github.event.pull_request.draft == false && false }}
+    if: ${{ (github.event.repository.language == 'Kotlin' || github.event.repository.language == 'Java') && github.event.pull_request.draft == false && false && github.event.action != 'unlabeled' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -134,7 +134,7 @@ jobs:
 
       - name: Get all PR labels
         id: pr-labels
-        uses: joerick/pr-labels-action@v1.0.7
+        uses: joerick/pr-labels-action@v1.0.8
 
       - name: Add labels for unlabelled PRs
         if: ${{ steps.pr-labels.outputs.labels == '' && (steps.openapi-diff.outputs.result != 'unknown' || steps.openapi-diff.outputs.result != '') }}
