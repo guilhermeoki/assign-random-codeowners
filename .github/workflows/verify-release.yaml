@@ -34,7 +34,7 @@ jobs:
 
       # Set up a JDK environment for building, testing and releasing.
       - name: Setup JDK 17.0.4
-        uses: actions/setup-java@v3.10.0
+        uses: actions/setup-java@v3.11.0
         with:
           java-version: 17.0.4
           distribution: temurin
