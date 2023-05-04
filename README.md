@@ -4,6 +4,12 @@ A GitHub Action for randomly assigning CODEOWNERS to changes submitted in PRs.
 
 ---
 
+It can prove difficult to [set round-robin/random PR reviewer assignment of team members](https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-settings-for-your-team) when a team is assigned as a PR reviewer for every team in an organization with many internal teams. 
+
+This GitHub Action aims to solve this by automatically picking random members of teams assigned as a reviewers on PRs and assign picked team members as reviewers instead.
+
+---
+
 # Usage
 
 ## Inputs
