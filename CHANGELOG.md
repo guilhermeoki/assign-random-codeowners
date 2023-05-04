@@ -1,3 +1,90 @@
+# v0.2.9 (Thu May 04 2023)
+
+### Release Notes
+
+#### Update dependency typescript to v5 ([#58](https://github.com/pleo-io/assign-random-codeowners/pull/58))
+
+<details>
+<summary>Microsoft/TypeScript</summary>
+
+---
+
+#### 🐞 Fixes
+
+- Bump json5 from 1.0.1 to 1.0.2 [#69](https://github.com/pleo-io/assign-random-codeowners/pull/69) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### ⚠️ Pushed to `main`
+
+- Update dependency pleo-io/centralized-templates to v20.15.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.56 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.55 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.13.10 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency prettier to v2.8.8 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.53 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @types/jest to v29.5.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.13.9 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.38.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.51 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/jest to v0.2.26 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.50 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency typescript to v5.0.4 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.13.3 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.49 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.13.2 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.13.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.46 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.12.4 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.57.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency typescript to v5.0.3 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.44 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.12.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.57.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.37.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint-config-prettier to v8.8.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.10.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @types/jest to v29.5.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency prettier to v2.8.7 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.42 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.9.5 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency prettier to v2.8.6 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.41 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.9.2 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.9.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.55.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @types/jest to v29.4.4 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @types/jest to v29.4.2 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.36.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.40 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.8.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.39 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency jest to v29.5.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint-config-prettier to v8.7.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.54.1 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.38 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.5.3 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+#### 🏠 Internal
+
+- Update files based on repository configuration [#67](https://github.com/pleo-io/assign-random-codeowners/pull/67) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#63](https://github.com/pleo-io/assign-random-codeowners/pull/63) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#61](https://github.com/pleo-io/assign-random-codeowners/pull/61) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#60](https://github.com/pleo-io/assign-random-codeowners/pull/60) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#59](https://github.com/pleo-io/assign-random-codeowners/pull/59) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update dependency typescript to v5 [#58](https://github.com/pleo-io/assign-random-codeowners/pull/58) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate) [@kodiakhq[bot]](https://github.com/kodiakhq[bot]))
+- Update files based on repository configuration [#57](https://github.com/pleo-io/assign-random-codeowners/pull/57) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Commit as auto versioning bot [#56](https://github.com/pleo-io/assign-random-codeowners/pull/56) ([@marcos-arranz](https://github.com/marcos-arranz))
+- Update files based on repository configuration [#55](https://github.com/pleo-io/assign-random-codeowners/pull/55) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@kodiakhq[bot]](https://github.com/kodiakhq[bot])
+- [@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot])
+- Marcos Arranz ([@marcos-arranz](https://github.com/marcos-arranz))
+- Renovate (Pleo) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+---
+
 # v0.2.8 (Thu Mar 02 2023)
 
 ### Release Notes
