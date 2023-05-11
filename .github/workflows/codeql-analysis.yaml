@@ -24,10 +24,10 @@ env:
 
 jobs:
   analyze-java:
-    timeout-minutes: 30
     name: Analyze ${{ github.event.repository.language }}
     continue-on-error: true
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       actions: read
       contents: read
@@ -54,6 +54,7 @@ jobs:
           gradle-version: wrapper
           gradle-home-cache-cleanup: true
           cache-read-only: true
+          cache-disabled: true
 
       # Set up a Node environment for JS/TS/Node client generation.
       - name: Set up Node 16
@@ -68,10 +69,11 @@ jobs:
         with:
           languages: ${{ github.event.repository.language }}
           ram: 4096
+          queries: security-and-quality
           tools: latest
 
       - name: Gradle Build
-        run: ./gradlew build -x test --stacktrace
+        run: ./gradlew build -x check -x functest --stacktrace -Dorg.gradle.jvmargs=-Xmx4g
         if: ${{ env.WORKING_LANGUAGE == 'java' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_REGISTRY_GRADLE_TOKEN }}
@@ -81,4 +83,3 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           ram: 4096
-          category: format('/language:{1}', env.WORKING_LANGUAGE)
