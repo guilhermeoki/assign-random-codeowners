@@ -73,7 +73,7 @@ jobs:
           tools: latest
 
       - name: Gradle Build
-        run: ./gradlew build -x check -x functest --stacktrace -Dorg.gradle.jvmargs=-Xmx4g
+        run: ./gradlew classes testClasses --stacktrace -Dorg.gradle.jvmargs=-Xmx4g
         if: ${{ env.WORKING_LANGUAGE == 'java' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_REGISTRY_GRADLE_TOKEN }}
