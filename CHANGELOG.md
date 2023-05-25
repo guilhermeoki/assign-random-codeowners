@@ -1,3 +1,327 @@
+# v0.2.10 (Thu May 25 2023)
+
+### Release Notes
+
+#### Update dependency pleo-io/centralized-templates to v20.20.0 ([#71](https://github.com/pleo-io/assign-random-codeowners/pull/71))
+
+<details>
+<summary>pleo-io/centralized-templates</summary>
+
+### [`v20.20.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20200-Wed-May-10-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.19.0...v20.20.0)
+
+##### 🎁 Features
+
+-   Support GitOps in the main TypeScript build workflow [#&#8203;752](https://togithub.com/pleo-io/centralized-templates/pull/752) ([@&#8203;zbcon](https://togithub.com/zbcon))
+
+##### Authors: 1
+
+-   Alex Harrison ([@&#8203;zbcon](https://togithub.com/zbcon))
+
+***
+
+### [`v20.19.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20190-Wed-May-10-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.18.1...v20.19.0)
+
+
+##### Add the Kubernetes configuration validation workflow ([#&#8203;770](https://togithub.com/pleo-io/centralized-templates/pull/770))
+
+Add Helm Linter for `k8s/product-**` files. Validates values of the `HelmRelease`.
+
+***
+
+##### 🎁 Features
+
+-   Add the Kubernetes configuration validation workflow [#&#8203;770](https://togithub.com/pleo-io/centralized-templates/pull/770) ([@&#8203;dorsradek](https://togithub.com/dorsradek))
+
+##### 🏠 Internal
+
+-   chore(deps): update hadolint/hadolint-action action to v3.1.0 [#&#8203;759](https://togithub.com/pleo-io/centralized-templates/pull/759) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+##### Authors: 2
+
+-   Radek Dors ([@&#8203;dorsradek](https://togithub.com/dorsradek))
+-   Renovate (Pleo) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+***
+
+### [`v20.18.1`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20181-Wed-May-10-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.18.0...v20.18.1)
+
+##### 🐞 Fixes
+
+-   Add INFO logging and stacktrace printing to the Kotlin Coveralls report publishing [#&#8203;768](https://togithub.com/pleo-io/centralized-templates/pull/768) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### Authors: 1
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+***
+
+### [`v20.18.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20180-Tue-May-09-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.6...v20.18.0)
+
+##### 🎁 Features
+
+-   Add the 'functionalTestTimeOut' CI timeout override for long-running functional tests [#&#8203;767](https://togithub.com/pleo-io/centralized-templates/pull/767) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### 🏠 Internal
+
+-   Update files based on repository configuration [#&#8203;765](https://togithub.com/pleo-io/centralized-templates/pull/765) ([@&#8203;pleo-file-distributor\[bot\]](https://togithub.com/pleo-file-distributor\[bot]) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update webfactory/ssh-agent action to v0.8.0 [#&#8203;762](https://togithub.com/pleo-io/centralized-templates/pull/762) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update pleo-io/actions action to v18.3.0 [#&#8203;761](https://togithub.com/pleo-io/centralized-templates/pull/761) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update mikepenz/action-junit-report action to v3.7.6 [#&#8203;760](https://togithub.com/pleo-io/centralized-templates/pull/760) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update dependency intuit/auto to v10.46.0 [#&#8203;758](https://togithub.com/pleo-io/centralized-templates/pull/758) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update coverallsapp/github-action action to v2.1.2 [#&#8203;757](https://togithub.com/pleo-io/centralized-templates/pull/757) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update pleo-io/assign-random-codeowners action to v0.2.9 [#&#8203;756](https://togithub.com/pleo-io/centralized-templates/pull/756) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update joerick/pr-labels-action action to v1.0.9 [#&#8203;755](https://togithub.com/pleo-io/centralized-templates/pull/755) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+-   chore(deps): update dependency pleo-io/centralized-templates to v20.17.3 [#&#8203;754](https://togithub.com/pleo-io/centralized-templates/pull/754) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate) [@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen) [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]))
+
+##### Authors: 4
+
+-   [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot])
+-   [@&#8203;pleo-file-distributor\[bot\]](https://togithub.com/pleo-file-distributor\[bot])
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+-   Renovate (Pleo) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+***
+
+### [`v20.17.6`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20176-Mon-May-08-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.5...v20.17.6)
+
+##### 🐞 Fixes
+
+-   Ensure Slack error reporting is always run for Kotlin builds [#&#8203;764](https://togithub.com/pleo-io/centralized-templates/pull/764) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### Authors: 1
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+***
+
+### [`v20.17.5`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20175-Mon-May-08-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.4...v20.17.5)
+
+##### 🐞 Fixes
+
+-   Support skipping functional tests in Coveralls coverage report aggregation [#&#8203;763](https://togithub.com/pleo-io/centralized-templates/pull/763) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### Authors: 1
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+***
+
+### [`v20.17.4`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20174-Mon-May-08-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.3...v20.17.4)
+
+##### 🐞 Fixes
+
+-   Avoid running Kotlin release triggers if only infrastructure configuration files have changed [#&#8203;750](https://togithub.com/pleo-io/centralized-templates/pull/750) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### Authors: 1
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+***
+
+### [`v20.17.3`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20173-Fri-May-05-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.2...v20.17.3)
+
+##### 🐞 Fixes
+
+-   Introduce checkout block in order to get the default branch [#&#8203;753](https://togithub.com/pleo-io/centralized-templates/pull/753) ([@&#8203;marcos-arranz](https://togithub.com/marcos-arranz))
+
+##### Authors: 1
+
+-   Marcos Arranz ([@&#8203;marcos-arranz](https://togithub.com/marcos-arranz))
+
+***
+
+### [`v20.17.2`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20172-Fri-May-05-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.1...v20.17.2)
+
+
+##### Update gitops-migration-application-configuration.yaml ([#&#8203;751](https://togithub.com/pleo-io/centralized-templates/pull/751))
+
+<!-- 
+Change path for Kustomization from ./apps/_resources/app to ./apps/_resources/app/standard
+-->
+
+***
+
+##### 🐞 Fixes
+
+-   Update gitops-migration-application-configuration.yaml [#&#8203;751](https://togithub.com/pleo-io/centralized-templates/pull/751) ([@&#8203;dorsradek](https://togithub.com/dorsradek))
+
+##### Authors: 1
+
+-   Radek Dors ([@&#8203;dorsradek](https://togithub.com/dorsradek))
+
+***
+
+### [`v20.17.1`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20171-Fri-May-05-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.17.0...v20.17.1)
+
+##### 🐞 Fixes
+
+-   Bump gradle/gradle-build-action from 2.3.3 to 2.4.2 in /.github/workflows [#&#8203;744](https://togithub.com/pleo-io/centralized-templates/pull/744) ([@&#8203;dependabot\[bot\]](https://togithub.com/dependabot\[bot]) [@&#8203;VictorPascualV](https://togithub.com/VictorPascualV))
+
+##### Authors: 2
+
+-   [@&#8203;dependabot\[bot\]](https://togithub.com/dependabot\[bot])
+-   Victor Pascual ([@&#8203;VictorPascualV](https://togithub.com/VictorPascualV))
+
+***
+
+### [`v20.17.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20170-Thu-May-04-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.16.1...v20.17.0)
+
+
+##### Split unit and functional test jobs in Kotlin builds ([#&#8203;749](https://togithub.com/pleo-io/centralized-templates/pull/749))
+
+Functional tests runs and unit test runs are skipped for the *"Build & Test Kotlin"* workflow in order to speed up workflow runs. The `build` job is moved and aggregates the result of the test runs. This does therefore not require modifying any repository branch protections.
+
+***
+
+##### 🎁 Features
+
+-   Split unit and functional test jobs in Kotlin builds [#&#8203;749](https://togithub.com/pleo-io/centralized-templates/pull/749) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### Authors: 1
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+***
+
+### [`v20.16.1`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20161-Thu-May-04-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.16.0...v20.16.1)
+
+
+##### Ensure Docker push on release ([#&#8203;748](https://togithub.com/pleo-io/centralized-templates/pull/748))
+
+Fixes a regression in [#&#8203;739](https://togithub.com/pleo-io/centralized-templates/issues/739) which led to Docker pushes not happening on release.
+
+***
+
+##### 🐞 Fixes
+
+-   Ensure Docker push on release [#&#8203;748](https://togithub.com/pleo-io/centralized-templates/pull/748) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### Authors: 1
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+***
+
+### [`v20.16.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20160-Wed-May-03-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.15.2...v20.16.0)
+
+
+##### Update gitops-migration-application-configuration.yaml ([#&#8203;747](https://togithub.com/pleo-io/centralized-templates/pull/747))
+
+<!-- 
+Bump Helm Chart to 0.5.2 & add empty migrationContainers: {}
+-->
+
+***
+
+##### 🎁 Features
+
+-   Update gitops-migration-application-configuration.yaml [#&#8203;747](https://togithub.com/pleo-io/centralized-templates/pull/747) ([@&#8203;dorsradek](https://togithub.com/dorsradek))
+
+##### Authors: 1
+
+-   Radek Dors ([@&#8203;dorsradek](https://togithub.com/dorsradek))
+
+***
+
+### [`v20.15.2`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v20152-Wed-May-03-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.15.1...v20.15.2)
+
+
+##### Fixes, updates and improvements to the codeql process ([#&#8203;746](https://togithub.com/pleo-io/centralized-templates/pull/746))
+
+The CodeQL analysis has been changed to:
+
+-   Avoid Gradle caching, since the Gradle breaks building for CodeQL
+-   Assign more memory and more cores to the job runner for Kotlin builds
+-   Use a bigger query package
+-   Prefer `debug` output in case we need to debug the analysis
+-   Remove a redundant analysis category for CodeQL
+-   Disable Detekt when building for CodeQL, since it is already run during the main build process
+
+***
+
+##### 🐞 Fixes
+
+-   Fixes, updates and improvements to the codeql process [#&#8203;746](https://togithub.com/pleo-io/centralized-templates/pull/746) ([@&#8203;LeShadow](https://togithub.com/LeShadow))
+
+##### Authors: 1
+
+-   Sebastiaan Provost ([@&#8203;LeShadow](https://togithub.com/LeShadow))
+
+***
+
+</details>
+
+---
+
+---
+
+#### 🐞 Fixes
+
+- Add error logging with traces for debugging purposes [#75](https://github.com/pleo-io/assign-random-codeowners/pull/75) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+
+#### ⚠️ Pushed to `main`
+
+- Update typescript-eslint monorepo to v5.59.7 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.21.3 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.41.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.59 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.40.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.59.6 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.21.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.58 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.20.2 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.57 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v5.59.2 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency eslint to v8.39.0 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+#### 🏠 Internal
+
+- Update files based on repository configuration [#74](https://github.com/pleo-io/assign-random-codeowners/pull/74) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]) [@kodiakhq[bot]](https://github.com/kodiakhq[bot]))
+- Add contribution guidelines and a pull request template [#73](https://github.com/pleo-io/assign-random-codeowners/pull/73) ([@andersfischernielsen](https://github.com/andersfischernielsen) [@dpotyralski](https://github.com/dpotyralski))
+- Update files based on repository configuration [#72](https://github.com/pleo-io/assign-random-codeowners/pull/72) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update dependency pleo-io/centralized-templates to v20.20.0 [#71](https://github.com/pleo-io/assign-random-codeowners/pull/71) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Add Action motivation to README [#70](https://github.com/pleo-io/assign-random-codeowners/pull/70) ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Bump gradle/gradle-build-action from 2.3.3 to 2.4.2 in /.github/workflows [#68](https://github.com/pleo-io/assign-random-codeowners/pull/68) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@andersfischernielsen](https://github.com/andersfischernielsen))
+
+#### Authors: 6
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@kodiakhq[bot]](https://github.com/kodiakhq[bot])
+- [@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot])
+- Anders Fischer-Nielsen ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Damian Potyralski ([@dpotyralski](https://github.com/dpotyralski))
+- Renovate (Pleo) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+---
+
 # v0.2.9 (Thu May 04 2023)
 
 ### Release Notes
