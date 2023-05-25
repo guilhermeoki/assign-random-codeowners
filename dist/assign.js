@@ -1,241 +1,268 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.run = exports.assignReviewers = exports.selectReviewers = exports.fetchTeamMembers = exports.extractChangedFiles = exports.extractAssigneeCount = exports.extractPullRequestPayload = exports.setup = exports.validPaths = void 0;
-const core_1 = require("@actions/core");
-const github_1 = require("@actions/github");
-const fs_1 = require("fs");
-const codeowners_utils_1 = require("codeowners-utils");
-exports.validPaths = ['CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS'];
-const setup = () => {
-    const toAssign = (0, core_1.getInput)('reviewers-to-assign', { required: true });
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function _export(target, all) {
+    for(var name in all)Object.defineProperty(target, name, {
+        enumerable: true,
+        get: all[name]
+    });
+}
+_export(exports, {
+    validPaths: ()=>validPaths,
+    setup: ()=>setup,
+    extractPullRequestPayload: ()=>extractPullRequestPayload,
+    extractAssigneeCount: ()=>extractAssigneeCount,
+    extractChangedFiles: ()=>extractChangedFiles,
+    fetchTeamMembers: ()=>fetchTeamMembers,
+    selectReviewers: ()=>selectReviewers,
+    assignReviewers: ()=>assignReviewers,
+    run: ()=>run
+});
+const _core = require("@actions/core");
+const _github = require("@actions/github");
+const _fs = require("fs");
+const _codeownersUtils = require("codeowners-utils");
+const validPaths = [
+    'CODEOWNERS',
+    '.github/CODEOWNERS',
+    'docs/CODEOWNERS'
+];
+const setup = ()=>{
+    const toAssign = (0, _core.getInput)('reviewers-to-assign', {
+        required: true
+    });
     const reviewers = Number.parseInt(toAssign);
-    const assignFromChanges = (0, core_1.getInput)('assign-from-changed-files') === 'true' || (0, core_1.getInput)('assign-from-changed-files') === 'True';
-    const assignIndividuals = (0, core_1.getInput)('assign-individuals-from-teams') === 'true' || (0, core_1.getInput)('assign-individuals-from-teams') === 'True';
+    const assignFromChanges = (0, _core.getInput)('assign-from-changed-files') === 'true' || (0, _core.getInput)('assign-from-changed-files') === 'True';
+    const assignIndividuals = (0, _core.getInput)('assign-individuals-from-teams') === 'true' || (0, _core.getInput)('assign-individuals-from-teams') === 'True';
     const token = process.env['GITHUB_TOKEN'];
     if (!token) {
-        (0, core_1.error)(`Did not find a GITHUB_TOKEN in the environment.`);
+        (0, _core.error)(`Did not find a GITHUB_TOKEN in the environment.`);
         process.exit(1);
     }
-    const octokit = (0, github_1.getOctokit)(token);
+    const octokit = (0, _github.getOctokit)(token);
     return {
         reviewers,
         assignFromChanges,
         assignIndividuals,
-        octokit,
+        octokit
     };
 };
-exports.setup = setup;
-const stringify = (input) => JSON.stringify(input);
-const extractPullRequestPayload = (context) => {
-    const { payload: { pull_request: payload }, repo: { repo, owner }, } = context;
+const stringify = (input)=>JSON.stringify(input);
+const extractPullRequestPayload = (context)=>{
+    const { payload: { pull_request: payload  } , repo: { repo , owner  }  } = context;
     const author = payload?.['user']?.['login'];
-    return payload && repo && owner
-        ? {
-            number: payload.number,
-            repo,
+    return payload && repo && owner ? {
+        number: payload.number,
+        repo,
+        owner,
+        author
+    } : undefined;
+};
+const extractAssigneeCount = (pullRequest)=>async (octokit)=>{
+        const { owner , repo , number: pull_number  } = pullRequest;
+        (0, _core.info)(`Requesting current reviewers in PR #${pull_number} via the GitHub API.`);
+        const { data: { teams , users  } , status  } = await octokit.rest.pulls.listRequestedReviewers({
             owner,
-            author,
-        }
-        : undefined;
-};
-exports.extractPullRequestPayload = extractPullRequestPayload;
-const extractAssigneeCount = (pullRequest) => async (octokit) => {
-    const { owner, repo, number: pull_number } = pullRequest;
-    (0, core_1.info)(`Requesting current reviewers in PR #${pull_number} via the GitHub API.`);
-    const { data: { teams, users }, status, } = await octokit.rest.pulls.listRequestedReviewers({
-        owner,
-        repo,
-        pull_number,
-    });
-    (0, core_1.info)(`[${status}] Found assigned reviewer teams:`);
-    const teamNames = teams.map(team => team.name);
-    (0, core_1.info)(stringify(teamNames));
-    (0, core_1.info)(`[${status}] Found assigned reviewer users:`);
-    const userNames = users.map(user => user.login);
-    (0, core_1.info)(stringify(userNames));
-    return teams.length + users.length;
-};
-exports.extractAssigneeCount = extractAssigneeCount;
-const extractChangedFiles = (assignFromChanges, pullRequest) => async (octokit) => {
-    if (!assignFromChanges)
-        return [];
-    const { owner, repo, number: pull_number } = pullRequest;
-    (0, core_1.info)(`Requesting files changed in PR #${pull_number} via the GitHub API.`);
-    const { data: changedFiles, status } = await octokit.rest.pulls.listFiles({
-        owner,
-        repo,
-        pull_number,
-    });
-    const filenames = changedFiles.map(file => file.filename);
-    (0, core_1.info)(`[${status}] Found changed PR files:`);
-    (0, core_1.info)(stringify(filenames));
-    return filenames;
-};
-exports.extractChangedFiles = extractChangedFiles;
-const randomize = (input) => input?.sort(() => Math.random() - 0.5);
-const isTeam = (selected) => (selected ? /@.*\//.test(selected) : false);
-const extractTeamSlug = (selected) => selected.replace(/@.*\//, '');
-const fetchTeamMembers = (organisation, codeowners) => async (octokit) => {
-    // Ensure that we don't have duplicate IDs in order to fetch as little from GitHub as possible.
-    const allTeamOwners = Array.from(new Set(codeowners.flatMap(entry => entry.owners).filter(isTeam)));
-    const allTeams = await Promise.all(allTeamOwners.map(async (team) => {
-        (0, core_1.info)(`Requesting team members for team '${organisation}/${team}' via the GitHub API.`);
-        // Fetch members from each team since there's currently no way
-        // to fetch all teams with members from a GitHub organisation.
-        const { data: teamMembers, status } = await octokit.rest.teams.listMembersInOrg({
-            org: organisation,
-            team_slug: extractTeamSlug(team),
+            repo,
+            pull_number
         });
-        if (!teamMembers) {
-            (0, core_1.error)(`Failed to fetch team members for team '${organisation}/${team}'.`);
-            process.exit(1);
-        }
-        const teamMemberIds = teamMembers.map(member => member.login);
-        (0, core_1.info)(`[${status}] Found team members:`);
-        (0, core_1.info)(stringify(teamMemberIds));
-        return { [team]: teamMemberIds };
-    }));
-    const joined = allTeams.reduce((acc, team) => ({ ...acc, ...team }), {});
-    return joined;
-};
-exports.fetchTeamMembers = fetchTeamMembers;
-const selectReviewers = async (changedFiles, codeowners, teamMembers, options) => {
-    const { assignedReviewers, reviewers, assignIndividuals, author } = options;
+        (0, _core.info)(`[${status}] Found assigned reviewer teams:`);
+        const teamNames = teams.map((team)=>team.name);
+        (0, _core.info)(stringify(teamNames));
+        (0, _core.info)(`[${status}] Found assigned reviewer users:`);
+        const userNames = users.map((user)=>user.login);
+        (0, _core.info)(stringify(userNames));
+        return teams.length + users.length;
+    };
+const extractChangedFiles = (assignFromChanges, pullRequest)=>async (octokit)=>{
+        if (!assignFromChanges) return [];
+        const { owner , repo , number: pull_number  } = pullRequest;
+        (0, _core.info)(`Requesting files changed in PR #${pull_number} via the GitHub API.`);
+        const { data: changedFiles , status  } = await octokit.rest.pulls.listFiles({
+            owner,
+            repo,
+            pull_number
+        });
+        const filenames = changedFiles.map((file)=>file.filename);
+        (0, _core.info)(`[${status}] Found changed PR files:`);
+        (0, _core.info)(stringify(filenames));
+        return filenames;
+    };
+const randomize = (input)=>input?.sort(()=>Math.random() - 0.5);
+const isTeam = (selected)=>selected ? /@.*\//.test(selected) : false;
+const extractTeamSlug = (selected)=>selected.replace(/@.*\//, '');
+const fetchTeamMembers = (organisation, codeowners)=>async (octokit)=>{
+        // Ensure that we don't have duplicate IDs in order to fetch as little from GitHub as possible.
+        const allTeamOwners = Array.from(new Set(codeowners.flatMap((entry)=>entry.owners).filter(isTeam)));
+        const allTeams = await Promise.all(allTeamOwners.map(async (team)=>{
+            (0, _core.info)(`Requesting team members for team '${organisation}/${team}' via the GitHub API.`);
+            // Fetch members from each team since there's currently no way
+            // to fetch all teams with members from a GitHub organisation.
+            const { data: teamMembers , status  } = await octokit.rest.teams.listMembersInOrg({
+                org: organisation,
+                team_slug: extractTeamSlug(team)
+            });
+            if (!teamMembers) {
+                (0, _core.error)(`Failed to fetch team members for team '${organisation}/${team}'.`);
+                process.exit(1);
+            }
+            const teamMemberIds = teamMembers.map((member)=>member.login);
+            (0, _core.info)(`[${status}] Found team members:`);
+            (0, _core.info)(stringify(teamMemberIds));
+            return {
+                [team]: teamMemberIds
+            };
+        }));
+        const joined = allTeams.reduce((acc, team)=>({
+                ...acc,
+                ...team
+            }), {});
+        return joined;
+    };
+const selectReviewers = async (changedFiles, codeowners, teamMembers, options)=>{
+    const { assignedReviewers , reviewers , assignIndividuals , author  } = options;
     const selectedTeams = new Set();
     const selectedUsers = new Set();
-    const assignees = () => selectedTeams.size + selectedUsers.size + assignedReviewers;
-    const stack = JSON.parse(JSON.stringify(codeowners)); //Poor man's deep clone.
+    const assignees = ()=>selectedTeams.size + selectedUsers.size + assignedReviewers;
+    const stack = JSON.parse(JSON.stringify(codeowners))//Poor man's deep clone.
+    ;
     const teams = teamMembers && JSON.parse(JSON.stringify(teamMembers));
-    const globalCodeowners = stack.find(owner => owner.pattern === '*')?.owners;
-    (0, core_1.info)(`Found global CODEOWNERS: ${stringify(globalCodeowners)}.`);
-    while (assignees() < reviewers) {
+    const globalCodeowners = stack.find((owner)=>owner.pattern === '*')?.owners;
+    (0, _core.info)(`Found global CODEOWNERS: ${stringify(globalCodeowners)}.`);
+    while(assignees() < reviewers){
         const randomFile = randomize(changedFiles)?.[0];
-        (0, core_1.debug)(`Selected random file: ${randomFile}`);
-        const randomFileOwner = randomize(stack.find(owner => owner.pattern === randomFile)?.owners)?.shift();
-        (0, core_1.debug)(`Selected random file owner: ${randomFileOwner}`);
+        (0, _core.debug)(`Selected random file: ${randomFile}`);
+        const randomFileOwner = randomize(stack.find((owner)=>owner.pattern === randomFile)?.owners)?.shift();
+        (0, _core.debug)(`Selected random file owner: ${randomFileOwner}`);
         const randomGlobalCodeowners = randomize(globalCodeowners);
         const selected = randomFileOwner ?? randomGlobalCodeowners?.[0];
-        if (!isTeam(selected))
-            randomGlobalCodeowners?.shift();
-        (0, core_1.debug)(`Selected: ${selected}`);
+        if (!isTeam(selected)) randomGlobalCodeowners?.shift();
+        (0, _core.debug)(`Selected: ${selected}`);
         if (author && selected === author) {
-            (0, core_1.debug)(`'${selected}' is the author '${author}'. Skipping.`);
+            (0, _core.debug)(`'${selected}' is the author '${author}'. Skipping.`);
             continue;
         }
         if (!selected) {
-            (0, core_1.debug)(`Did not find an assignee.`);
+            (0, _core.debug)(`Did not find an assignee.`);
             break;
         }
         const teamSlug = extractTeamSlug(selected);
-        (0, core_1.debug)(`Extracted team slug: ${teamSlug}.`);
+        (0, _core.debug)(`Extracted team slug: ${teamSlug}.`);
         if (isTeam(selected) && assignIndividuals) {
-            (0, core_1.debug)(`Assigning individuals from team: ${teamSlug}.`);
-            (0, core_1.debug)(`Possible teams are: ${stringify(teams)}.`);
+            (0, _core.debug)(`Assigning individuals from team: ${teamSlug}.`);
+            (0, _core.debug)(`Possible teams are: ${stringify(teams)}.`);
             // If the set of all teams are exhausted we give up assigning teams.
             if (Object.keys(teams).length === 0) {
-                (0, core_1.debug)('Teams to assign is empty. Exiting.');
+                (0, _core.debug)('Teams to assign is empty. Exiting.');
                 break;
             }
             const randomTeamMember = randomize(teams?.[selected])?.shift();
             if (!randomTeamMember) {
                 // Remove the team from the stack of all team members have been extracted.
-                (0, core_1.debug)(`Did not find random team member. Removing team ${teamSlug} from possible teams to assign.`);
+                (0, _core.debug)(`Did not find random team member. Removing team ${teamSlug} from possible teams to assign.`);
                 delete teams?.[selected];
                 randomGlobalCodeowners?.shift();
                 continue;
             }
-            (0, core_1.debug)(`Found random team member: ${randomTeamMember}.`);
+            (0, _core.debug)(`Found random team member: ${randomTeamMember}.`);
             if (randomTeamMember === author) {
-                (0, core_1.debug)(`'${randomTeamMember}' is the author '${author}'. Skipping.`);
+                (0, _core.debug)(`'${randomTeamMember}' is the author '${author}'. Skipping.`);
                 continue;
             }
-            (0, core_1.info)(`Assigning '${randomTeamMember}' from assignee team '${teamSlug}'.`);
+            (0, _core.info)(`Assigning '${randomTeamMember}' from assignee team '${teamSlug}'.`);
             selectedUsers.add(randomTeamMember);
-        }
-        else if (isTeam(selected)) {
-            (0, core_1.info)(`Assigning '${selected}' as an assignee team.`);
+        } else if (isTeam(selected)) {
+            (0, _core.info)(`Assigning '${selected}' as an assignee team.`);
             selectedTeams.add(teamSlug);
-        }
-        else {
-            (0, core_1.info)(`Assigning '${selected}' as an assignee user.`);
+        } else {
+            (0, _core.info)(`Assigning '${selected}' as an assignee user.`);
             selectedUsers.add(selected);
         }
     }
     return {
         count: selectedTeams.size + selectedUsers.size,
         teams: Array.from(selectedTeams),
-        users: Array.from(selectedUsers),
+        users: Array.from(selectedUsers)
     };
 };
-exports.selectReviewers = selectReviewers;
-const assignReviewers = (pullRequest, reviewers) => async (octokit) => {
-    const { repo, owner, number } = pullRequest;
-    const { teams, users, count } = reviewers;
-    if (count === 0) {
-        (0, core_1.info)('No reviewers were selected. Skipping requesting reviewers.');
+const assignReviewers = (pullRequest, reviewers)=>async (octokit)=>{
+        const { repo , owner , number  } = pullRequest;
+        const { teams , users , count  } = reviewers;
+        if (count === 0) {
+            (0, _core.info)('No reviewers were selected. Skipping requesting reviewers.');
+            return reviewers;
+        }
+        (0, _core.info)(`Requesting ${count} reviewers via the GitHub API.`);
+        const { data: assigned , status  } = await octokit.rest.pulls.requestReviewers({
+            owner,
+            repo,
+            pull_number: number,
+            team_reviewers: teams,
+            reviewers: users
+        });
+        const requestedReviewers = assigned.requested_reviewers?.map((user)=>user.login);
+        const requestedTeams = assigned.requested_teams?.map((team)=>team.name);
+        if (requestedReviewers && requestedTeams) {
+            const requested = {
+                count: requestedReviewers.length + requestedTeams.length,
+                teams: requestedTeams,
+                users: requestedReviewers
+            };
+            (0, _core.info)(`[${status}] Assigned reviewers: `);
+            (0, _core.info)(stringify(requested));
+            return requested;
+        }
         return reviewers;
-    }
-    (0, core_1.info)(`Requesting ${count} reviewers via the GitHub API.`);
-    const { data: assigned, status } = await octokit.rest.pulls.requestReviewers({
-        owner,
-        repo,
-        pull_number: number,
-        team_reviewers: teams,
-        reviewers: users,
-    });
-    const requestedReviewers = assigned.requested_reviewers?.map(user => user.login);
-    const requestedTeams = assigned.requested_teams?.map(team => team.name);
-    if (requestedReviewers && requestedTeams) {
-        const requested = {
-            count: requestedReviewers.length + requestedTeams.length,
-            teams: requestedTeams,
-            users: requestedReviewers,
-        };
-        (0, core_1.info)(`[${status}] Assigned reviewers: `);
-        (0, core_1.info)(stringify(requested));
-        return requested;
-    }
-    return reviewers;
-};
-exports.assignReviewers = assignReviewers;
-const run = async () => {
-    if (process.env['CI_TEST'])
-        return;
+    };
+const run = async ()=>{
+    if (process.env['CI_TEST']) return;
     try {
-        const { assignFromChanges, reviewers, assignIndividuals, octokit } = (0, exports.setup)();
-        const codeownersLocation = exports.validPaths.find(path => (0, fs_1.existsSync)(path));
+        const { assignFromChanges , reviewers , assignIndividuals , octokit  } = setup();
+        const codeownersLocation = validPaths.find((path)=>(0, _fs.existsSync)(path));
         if (!codeownersLocation) {
-            (0, core_1.error)(`Did not find a CODEOWNERS file in: ${stringify(exports.validPaths)}.`);
+            (0, _core.error)(`Did not find a CODEOWNERS file in: ${stringify(validPaths)}.`);
             process.exit(1);
         }
-        (0, core_1.info)(`Found CODEOWNERS at ${codeownersLocation}`);
-        const pullRequest = (0, exports.extractPullRequestPayload)(github_1.context);
+        (0, _core.info)(`Found CODEOWNERS at ${codeownersLocation}`);
+        const pullRequest = extractPullRequestPayload(_github.context);
         if (!pullRequest) {
-            (0, core_1.error)("Pull Request payload was not found. Is the action triggered by the 'pull-request' event?");
+            (0, _core.error)("Pull Request payload was not found. Is the action triggered by the 'pull-request' event?");
             process.exit(1);
         }
-        const codeownersContents = await fs_1.promises.readFile(codeownersLocation, { encoding: 'utf-8' });
-        const codeowners = (0, codeowners_utils_1.parse)(codeownersContents);
-        (0, core_1.info)('Parsed CODEOWNERS:');
-        (0, core_1.info)(stringify(codeowners));
-        const assignedReviewers = await (0, exports.extractAssigneeCount)(pullRequest)(octokit);
+        const codeownersContents = await _fs.promises.readFile(codeownersLocation, {
+            encoding: 'utf-8'
+        });
+        const codeowners = (0, _codeownersUtils.parse)(codeownersContents);
+        (0, _core.info)('Parsed CODEOWNERS:');
+        (0, _core.info)(stringify(codeowners));
+        const assignedReviewers = await extractAssigneeCount(pullRequest)(octokit);
         if (assignedReviewers > reviewers) {
-            (0, core_1.info)(`Saw ${assignedReviewers} assigned reviewers - skipping CODEOWNERS assignment.`);
+            (0, _core.info)(`Saw ${assignedReviewers} assigned reviewers - skipping CODEOWNERS assignment.`);
             process.exit(0);
         }
-        const teams = assignIndividuals ? await (0, exports.fetchTeamMembers)(pullRequest.owner, codeowners)(octokit) : {};
-        const selectionOptions = { assignedReviewers, reviewers, assignIndividuals, author: pullRequest.author };
-        const changedFiles = await (0, exports.extractChangedFiles)(assignFromChanges, pullRequest)(octokit);
-        (0, core_1.info)('Selecting reviewers for assignment.');
-        const selected = await (0, exports.selectReviewers)(changedFiles, codeowners, teams, selectionOptions);
-        (0, core_1.info)(`Selected additional reviewers for assignment: ${stringify(selected)}`);
-        const assigned = await (0, exports.assignReviewers)(pullRequest, selected)(octokit);
-        (0, core_1.setOutput)('assigned-codeowners', stringify(assigned));
-        (0, core_1.info)(`Assigned reviewers: ${stringify(assigned)}`);
-    }
-    catch (error) {
-        (0, core_1.setFailed)(error);
+        const teams = assignIndividuals ? await fetchTeamMembers(pullRequest.owner, codeowners)(octokit) : {};
+        const selectionOptions = {
+            assignedReviewers,
+            reviewers,
+            assignIndividuals,
+            author: pullRequest.author
+        };
+        const changedFiles = await extractChangedFiles(assignFromChanges, pullRequest)(octokit);
+        (0, _core.info)('Selecting reviewers for assignment.');
+        const selected = await selectReviewers(changedFiles, codeowners, teams, selectionOptions);
+        (0, _core.info)(`Selected additional reviewers for assignment: ${stringify(selected)}`);
+        const assigned = await assignReviewers(pullRequest, selected)(octokit);
+        (0, _core.setOutput)('assigned-codeowners', stringify(assigned));
+        (0, _core.info)(`Assigned reviewers: ${stringify(assigned)}`);
+    } catch (e) {
+        const asError = e;
+        (0, _core.error)(asError);
+        if (asError.stack) {
+            (0, _core.error)('Stacktrace:');
+            (0, _core.error)(asError.stack);
+        }
+        (0, _core.setFailed)(asError);
     }
 };
-exports.run = run;
-(0, exports.run)();
+run();

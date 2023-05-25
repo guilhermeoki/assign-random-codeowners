@@ -1,6 +1,6 @@
 name: Test
 
-on: 
+on:
   push:
     branches-ignore:
       - "main"
@@ -12,25 +12,29 @@ jobs:
     runs-on: ubuntu-latest
     name: Test
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: yarn
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
 
-    - name: Install packages
-      run: |
-        yarn
+      - name: Install packages
+        run: |
+          yarn install
 
-    - name: Build
-      run: |
-        yarn build
+      - name: Install SWC
+        run: |
+          yarn global add @swc/core @swc/cli
 
-    - name: Run unit tests
-      run: |
-        yarn test
-      env: 
-        CI_TEST: true
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Run unit tests
+        run: |
+          yarn test
+        env:
+          CI_TEST: true

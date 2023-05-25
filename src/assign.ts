@@ -286,8 +286,15 @@ export const run = async () => {
     const assigned = await assignReviewers(pullRequest, selected)(octokit)
     setOutput('assigned-codeowners', stringify(assigned))
     info(`Assigned reviewers: ${stringify(assigned)}`)
-  } catch (error: unknown) {
-    setFailed(error as Error)
+  } catch (e: unknown) {
+    const asError = e as Error
+
+    error(asError)
+    if (asError.stack) {
+      error('Stacktrace:')
+      error(asError.stack)
+    }
+    setFailed(asError)
   }
 }
 

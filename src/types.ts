@@ -10,7 +10,7 @@ export interface ActionOptions {
 export interface PullRequestInformation {
   number: number
   repo: string
-  owner: string,
+  owner: string
   author?: string
 }
 

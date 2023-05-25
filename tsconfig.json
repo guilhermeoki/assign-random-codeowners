@@ -2,17 +2,12 @@
   "compilerOptions": {
     "target": "ES2021",
     "module": "commonjs",
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["jest", "node"],
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "src/*.test.ts"
-  ]
+  "exclude": ["src/*.test.ts"]
 }

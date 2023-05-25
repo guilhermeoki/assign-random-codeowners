@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "swc src -d dist --copy-files",
+    "lint": "eslint --ext .ts src && prettier --check src/**/*.ts",
+    "format": "eslint --fix --ext .ts src && prettier --write src/**/*.ts"
   },
   "repository": {
     "type": "git",

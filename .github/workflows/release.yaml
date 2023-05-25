@@ -34,6 +34,10 @@ jobs:
         run: |
           yarn install --production
 
+      - name: Install SWC
+        run: |
+          yarn global add @swc/core @swc/cli
+
       - name: Remove development types
         run: |
           cp tsconfig.json tsconfig-original.json
