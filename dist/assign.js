@@ -9,20 +9,38 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    validPaths: ()=>validPaths,
-    setup: ()=>setup,
-    extractPullRequestPayload: ()=>extractPullRequestPayload,
-    extractAssigneeCount: ()=>extractAssigneeCount,
-    extractChangedFiles: ()=>extractChangedFiles,
-    fetchTeamMembers: ()=>fetchTeamMembers,
-    selectReviewers: ()=>selectReviewers,
-    assignReviewers: ()=>assignReviewers,
-    run: ()=>run
+    validPaths: function() {
+        return validPaths;
+    },
+    setup: function() {
+        return setup;
+    },
+    extractPullRequestPayload: function() {
+        return extractPullRequestPayload;
+    },
+    extractAssigneeCount: function() {
+        return extractAssigneeCount;
+    },
+    extractChangedFiles: function() {
+        return extractChangedFiles;
+    },
+    fetchTeamMembers: function() {
+        return fetchTeamMembers;
+    },
+    selectReviewers: function() {
+        return selectReviewers;
+    },
+    assignReviewers: function() {
+        return assignReviewers;
+    },
+    run: function() {
+        return run;
+    }
 });
 const _core = require("@actions/core");
 const _github = require("@actions/github");
 const _fs = require("fs");
-const _codeownersUtils = require("codeowners-utils");
+const _codeownersutils = require("codeowners-utils");
 const validPaths = [
     'CODEOWNERS',
     '.github/CODEOWNERS',
@@ -233,7 +251,7 @@ const run = async ()=>{
         const codeownersContents = await _fs.promises.readFile(codeownersLocation, {
             encoding: 'utf-8'
         });
-        const codeowners = (0, _codeownersUtils.parse)(codeownersContents);
+        const codeowners = (0, _codeownersutils.parse)(codeownersContents);
         (0, _core.info)('Parsed CODEOWNERS:');
         (0, _core.info)(stringify(codeowners));
         const assignedReviewers = await extractAssigneeCount(pullRequest)(octokit);
