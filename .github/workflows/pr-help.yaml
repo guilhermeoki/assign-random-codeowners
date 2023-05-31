@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Run Danger
-        run: npx danger ci -v --dangerfile pleo-io/danger-config/dangerfile.ts
+        run: npx danger ci -v --dangerfile pleo-io/danger-config/dangerfile.ts@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DANGER_GITHUB_API_BASE_URL: https://api.github.com
