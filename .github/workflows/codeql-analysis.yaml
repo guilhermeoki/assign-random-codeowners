@@ -38,11 +38,11 @@ jobs:
       - name: Set Working Language
         run: echo "WORKING_LANGUAGE=${{env[format('language_{0}', github.event.repository.language)]}}" >> "$GITHUB_ENV"
       # Set up a JDK environment for building, testing and releasing.
-      - name: Set up JDK 17.0.4
+      - name: Set up JDK 17
         uses: actions/setup-java@v3.11.0
         if: ${{ env.WORKING_LANGUAGE == 'java' }}
         with:
-          java-version: 17.0.4
+          java-version: 17
           distribution: temurin
 
       # Allow caching Gradle executions to further speed up CI/CD steps invoking Gradle.
