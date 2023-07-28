@@ -1,76 +1,70 @@
 import { getInput, error, info, debug, setOutput, setFailed } from '@actions/core'
 import { getOctokit, context } from '@actions/github'
-import { existsSync, promises as fs } from 'fs'
-import { CodeOwnersEntry, parse } from 'codeowners-utils'
+
+import { CodeOwnersEntry } from 'codeowners-utils'
 import { Context } from '@actions/github/lib/context'
 import { Api } from '@octokit/plugin-rest-endpoint-methods/dist-types/types'
 import { ActionOptions, PullRequestInformation, Assignees, SelectionOptions, TeamMembers } from './types'
+import { extractAssigneeCount } from './reviewers'
+import { getCodeowners } from './codeowners'
 
-export const validPaths = ['CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS']
+const stringify = (input?: unknown) => JSON.stringify(input)
 
 export const setup = (): ActionOptions => {
-  const toAssign = getInput('reviewers-to-assign', { required: true })
-  const reviewers = Number.parseInt(toAssign)
-  const assignFromChanges =
-    getInput('assign-from-changed-files') === 'true' || getInput('assign-from-changed-files') === 'True'
-  const assignIndividuals =
-    getInput('assign-individuals-from-teams') === 'true' || getInput('assign-individuals-from-teams') === 'True'
-
-  const token = process.env['GITHUB_TOKEN']
-  if (!token) {
-    error(`Did not find a GITHUB_TOKEN in the environment.`)
-    process.exit(1)
-  }
-
+  const configParams = getConfigParams()
+  const token = getGitHubToken()
   const octokit = getOctokit(token)
+
+  return {
+    ...configParams,
+    octokit,
+  }
+}
+
+const getConfigParams = (): { reviewers: number; assignFromChanges: boolean; assignIndividuals: boolean } => {
+  const inputReviewers = getInput('reviewers-to-assign', { required: true })
+  const reviewers = Number.parseInt(inputReviewers)
+  const assignFromChanges = getInput('assign-from-changed-files').toLowerCase() === 'true'
+  const assignIndividuals = getInput('assign-individuals-from-teams').toLowerCase() === 'true'
 
   return {
     reviewers,
     assignFromChanges,
     assignIndividuals,
-    octokit,
   }
 }
 
-const stringify = (input?: unknown) => JSON.stringify(input)
-export const extractPullRequestPayload = (context: Context): PullRequestInformation | undefined => {
+const getGitHubToken = () => {
+  const token = process.env['GITHUB_TOKEN']
+  if (!token) {
+    error(`Did not find a GITHUB_TOKEN in the environment.`)
+    process.exit(1)
+  }
+  return token
+}
+
+export const extractPullRequestPayload = (context: Context): PullRequestInformation => {
   const {
     payload: { pull_request: payload },
     repo: { repo, owner },
   } = context
 
   const author: string = payload?.['user']?.['login']
-  return payload && repo && owner
-    ? {
-        number: payload.number,
-        repo,
-        owner,
-        author,
-      }
-    : undefined
-}
+  const pullRequest =
+    payload && repo && owner
+      ? {
+          number: payload.number,
+          repo,
+          owner,
+          author,
+        }
+      : undefined
 
-export const extractAssigneeCount = (pullRequest: PullRequestInformation) => async (octokit: Api) => {
-  const { owner, repo, number: pull_number } = pullRequest
-
-  info(`Requesting current reviewers in PR #${pull_number} via the GitHub API.`)
-  const {
-    data: { teams, users },
-    status,
-  } = await octokit.rest.pulls.listRequestedReviewers({
-    owner,
-    repo,
-    pull_number,
-  })
-
-  info(`[${status}] Found assigned reviewer teams:`)
-  const teamNames = teams.map(team => team.name)
-  info(stringify(teamNames))
-  info(`[${status}] Found assigned reviewer users:`)
-  const userNames = users.map(user => user.login)
-  info(stringify(userNames))
-
-  return teams.length + users.length
+  if (!pullRequest) {
+    error("Pull Request payload was not found. Is the action triggered by the 'pull-request' event?")
+    process.exit(1)
+  }
+  return pullRequest
 }
 
 export const extractChangedFiles =
@@ -246,29 +240,17 @@ export const assignReviewers = (pullRequest: PullRequestInformation, reviewers: 
   return reviewers
 }
 
+const isCITestRun = process.env['CI_TEST']
+
 export const run = async () => {
-  if (process.env['CI_TEST']) return
+  if (isCITestRun) return
 
   try {
-    const { assignFromChanges, reviewers, assignIndividuals, octokit } = setup()
-
-    const codeownersLocation = validPaths.find(path => existsSync(path))
-    if (!codeownersLocation) {
-      error(`Did not find a CODEOWNERS file in: ${stringify(validPaths)}.`)
-      process.exit(1)
-    }
-    info(`Found CODEOWNERS at ${codeownersLocation}`)
+    const { reviewers, assignFromChanges, assignIndividuals, octokit } = setup()
 
     const pullRequest = extractPullRequestPayload(context)
-    if (!pullRequest) {
-      error("Pull Request payload was not found. Is the action triggered by the 'pull-request' event?")
-      process.exit(1)
-    }
 
-    const codeownersContents = await fs.readFile(codeownersLocation, { encoding: 'utf-8' })
-    const codeowners = parse(codeownersContents)
-    info('Parsed CODEOWNERS:')
-    info(stringify(codeowners))
+    const codeowners = await getCodeowners()
 
     const assignedReviewers = await extractAssigneeCount(pullRequest)(octokit)
     if (assignedReviewers > reviewers) {

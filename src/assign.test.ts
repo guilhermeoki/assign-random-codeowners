@@ -3,7 +3,6 @@ import { Context } from '@actions/github/lib/context'
 import {
   setup,
   extractPullRequestPayload,
-  extractAssigneeCount,
   extractChangedFiles,
   assignReviewers,
   selectReviewers,
@@ -12,6 +11,7 @@ import {
 import { Assignees, SelectionOptions } from './types'
 import * as core from '@actions/core'
 import { CodeOwnersEntry } from 'codeowners-utils'
+import { extractAssigneeCount } from './reviewers'
 
 beforeEach(() => {
   process.env['INPUT_REVIEWERS-TO-ASSIGN'] = '2'
@@ -21,8 +21,14 @@ beforeEach(() => {
 })
 
 describe('Input handling', () => {
+  beforeEach(() => {
+    jest.spyOn(process, 'exit').mockImplementation()
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
   it('does not throw if required inputs are present', async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation()
     const infoMessages: string[] = []
     jest.spyOn(process.stdout, 'write').mockImplementation(s => {
       infoMessages.push(s as string)
@@ -32,8 +38,6 @@ describe('Input handling', () => {
     process.env['INPUT_ASSIGN-FROM-CHANGED-FILES'] = 'false'
 
     setup()
-
-    exitMock.mockRestore()
   })
 
   it('can parse inputs if present', async () => {
@@ -49,7 +53,6 @@ describe('Input handling', () => {
   })
 
   it('throws if GitHub token is not present', async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation()
     const infoMessages: string[] = []
     jest.spyOn(process.stdout, 'write').mockImplementation(s => {
       infoMessages.push(s as string)
@@ -60,11 +63,9 @@ describe('Input handling', () => {
 
     expect(() => setup()).toThrow()
     expect(infoMessages.some(e => /::error::.*GITHUB_TOKEN/.test(e))).toBeTruthy()
-    exitMock.mockRestore()
   })
 
   it("throws if 'reviewers-to-assign' is not present", async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation()
     const infoMessages: string[] = []
     jest.spyOn(process.stdout, 'write').mockImplementation(s => {
       infoMessages.push(s as string)
@@ -74,12 +75,9 @@ describe('Input handling', () => {
     delete process.env['INPUT_REVIEWERS-TO-ASSIGN']
 
     expect(() => setup()).toThrow()
-
-    exitMock.mockRestore()
   })
 
   it("does not throw if 'assign-from-changed-files' is not present", async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation()
     const infoMessages: string[] = []
     jest.spyOn(process.stdout, 'write').mockImplementation(s => {
       infoMessages.push(s as string)
@@ -89,12 +87,9 @@ describe('Input handling', () => {
     delete process.env['INPUT_ASSIGN-FROM-CHANGED-FILES']
 
     expect(() => setup()).not.toThrow()
-
-    exitMock.mockRestore()
   })
 
   it("does not throw if 'assign-individuals-from-teams' is not present", async () => {
-    const exitMock = jest.spyOn(process, 'exit').mockImplementation()
     const infoMessages: string[] = []
     jest.spyOn(process.stdout, 'write').mockImplementation(s => {
       infoMessages.push(s as string)
@@ -104,12 +99,19 @@ describe('Input handling', () => {
     delete process.env['INPUT_ASSIGN-INDIVIDUALS-FROM-TEAMS']
 
     expect(() => setup()).not.toThrow()
-
-    exitMock.mockRestore()
   })
 })
 
 describe('Payload handling', () => {
+  let exitMock: unknown
+
+  beforeEach(() => {
+    exitMock = jest.spyOn(process, 'exit').mockImplementation()
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
   it('can extract information from pull request payloads', () => {
     const context: Context = {
       payload: {
@@ -154,7 +156,7 @@ describe('Payload handling', () => {
     })
   })
 
-  it('returns undefined for missing pull request payloads', () => {
+  it('exits with exit code `1` for missing pull request payloads', () => {
     const context: Context = {
       payload: {
         issue: {
@@ -183,12 +185,19 @@ describe('Payload handling', () => {
         repo: 'repo',
       },
     }
+    const infoMessages: string[] = []
+    jest.spyOn(process.stdout, 'write').mockImplementation(s => {
+      infoMessages.push(s as string)
+      return true
+    })
 
-    const result = extractPullRequestPayload(context)
-    expect(result).toBe(undefined)
+    extractPullRequestPayload(context)
+
+    expect(infoMessages.some(e => /Pull Request payload was not found/.test(e))).toBeTruthy()
+    expect(exitMock).toHaveBeenCalledWith(1)
   })
 
-  it('returns undefined for missing repository information in payloads', () => {
+  it('exits with exit code `1` for missing repository information in payloads', () => {
     const context = {
       payload: {
         pull_request: {
@@ -200,9 +209,16 @@ describe('Payload handling', () => {
         repo: undefined,
       },
     }
+    const infoMessages: string[] = []
+    jest.spyOn(process.stdout, 'write').mockImplementation(s => {
+      infoMessages.push(s as string)
+      return true
+    })
 
-    const result = extractPullRequestPayload(context as never)
-    expect(result).toBe(undefined)
+    extractPullRequestPayload(context as never)
+
+    expect(infoMessages.some(e => /Pull Request payload was not found/.test(e))).toBeTruthy()
+    expect(exitMock).toHaveBeenCalledWith(1)
   })
 })
 
