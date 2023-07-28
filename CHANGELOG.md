@@ -1,3 +1,470 @@
+# v0.2.11 (Fri Jul 28 2023)
+
+### Release Notes
+
+#### Update dependency centralized-templates to v23 ([#91](https://github.com/pleo-io/assign-random-codeowners/pull/91))
+
+<details>
+<summary>pleo-io/centralized-templates (centralized-templates)</summary>
+
+### [`v23.1.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v2310-Fri-Jul-28-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v23.0.0...v23.1.0)
+
+
+##### Support configuring OpenAPI linting ([#&#8203;869](https://togithub.com/pleo-io/centralized-templates/pull/869))
+
+-   introduce `ignoreOpenAPIErrors` variable to make step behavior configurable
+
+***
+
+##### 🎁 Features
+
+-   Support configuring OpenAPI linting [#&#8203;869](https://togithub.com/pleo-io/centralized-templates/pull/869) ([@&#8203;r0binary](https://togithub.com/r0binary))
+
+##### Authors: 1
+
+-   Robin Lungwitz ([@&#8203;r0binary](https://togithub.com/r0binary))
+
+***
+
+### [`v23.0.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v2300-Fri-Jul-28-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v22.0.0...v23.0.0)
+
+
+##### Automerge repository template changes automatically ([#&#8203;871](https://togithub.com/pleo-io/centralized-templates/pull/871))
+
+-   Merges `file-distributor` PRs automatically when repository configurations change.
+
+***
+
+##### 💥 Major changes
+
+-   Automerge repository template changes automatically [#&#8203;871](https://togithub.com/pleo-io/centralized-templates/pull/871) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen) [@&#8203;LittleGreenYoda42](https://togithub.com/LittleGreenYoda42))
+
+##### Authors: 2
+
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+-   Martin Elias ([@&#8203;LittleGreenYoda42](https://togithub.com/LittleGreenYoda42))
+
+***
+
+### [`v22.0.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v2200-Fri-Jul-28-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v21.6.4...v22.0.0)
+
+
+##### Default to Node.js 20 ([#&#8203;870](https://togithub.com/pleo-io/centralized-templates/pull/870))
+
+-   Defaults all Node.js versions to `20`.
+
+***
+
+##### 💥 Major changes
+
+-   Default to Node.js 20 [#&#8203;870](https://togithub.com/pleo-io/centralized-templates/pull/870) ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+
+##### 🏠 Internal
+
+-   chore(deps): update actions/setup-java action to v3.12.0 [#&#8203;867](https://togithub.com/pleo-io/centralized-templates/pull/867) (devx+renovate@pleo.io [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot]) [@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+-   chore(deps): update gradle/gradle-build-action action to v2.7.0 [#&#8203;868](https://togithub.com/pleo-io/centralized-templates/pull/868) (devx+renovate@pleo.io [@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+-   Update files based on repository configuration [#&#8203;866](https://togithub.com/pleo-io/centralized-templates/pull/866) ([@&#8203;pleo-file-distributor\[bot\]](https://togithub.com/pleo-file-distributor\[bot]))
+-   chore(deps): update dependency centralized-templates to v21.6.4 [#&#8203;865](https://togithub.com/pleo-io/centralized-templates/pull/865) (devx+renovate@pleo.io [@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+##### Authors: 5
+
+-   [@&#8203;kodiakhq\[bot\]](https://togithub.com/kodiakhq\[bot])
+-   [@&#8203;pleo-file-distributor\[bot\]](https://togithub.com/pleo-file-distributor\[bot])
+-   Anders Fischer-Nielsen ([@&#8203;andersfischernielsen](https://togithub.com/andersfischernielsen))
+-   Renovate (devx+renovate@pleo.io)
+-   Renovate (Pleo) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+***
+
+</details>
+
+---
+
+#### Simplify implementation by separation ([#90](https://github.com/pleo-io/assign-random-codeowners/pull/90))
+
+- Simplify the implementation for readability.
+
+#### Update dependency eslint-plugin-prettier to v5 ([#86](https://github.com/pleo-io/assign-random-codeowners/pull/86))
+
+<details>
+<summary>prettier/eslint-plugin-prettier (eslint-plugin-prettier)</summary>
+
+### [`v5.0.0`](https://togithub.com/prettier/eslint-plugin-prettier/blob/HEAD/CHANGELOG.md#500)
+
+[Compare Source](https://togithub.com/prettier/eslint-plugin-prettier/compare/v4.2.1...v5.0.0)
+
+##### Major Changes
+
+-   [#&#8203;508](https://togithub.com/prettier/eslint-plugin-prettier/pull/508) [`910aeb6`](https://togithub.com/prettier/eslint-plugin-prettier/commit/910aeb60a7456beb6193c634bb8dec1b7181312d) Thanks [@&#8203;JounQin](https://togithub.com/JounQin)! - feat!: bump peer eslint to ">=8.0.0" and node to "^14.18.0 || >=16.0.0"
+
+-   [#&#8203;508](https://togithub.com/prettier/eslint-plugin-prettier/pull/508) [`910aeb6`](https://togithub.com/prettier/eslint-plugin-prettier/commit/910aeb60a7456beb6193c634bb8dec1b7181312d) Thanks [@&#8203;JounQin](https://togithub.com/JounQin)! - feat!: upgrade to prettier v3
+
+##### Minor Changes
+
+-   [#&#8203;508](https://togithub.com/prettier/eslint-plugin-prettier/pull/508) [`910aeb6`](https://togithub.com/prettier/eslint-plugin-prettier/commit/910aeb60a7456beb6193c634bb8dec1b7181312d) Thanks [@&#8203;JounQin](https://togithub.com/JounQin)! - feat: add typings support
+
+##### Patch Changes
+
+-   [#&#8203;548](https://togithub.com/prettier/eslint-plugin-prettier/pull/548) [`82a3db8`](https://togithub.com/prettier/eslint-plugin-prettier/commit/82a3db878baf1a8f8ef53393069fe23c3a80ce15) Thanks [@&#8203;fisker](https://togithub.com/fisker)! - fix: add missing dependency `synckit`
+
+-   [#&#8203;564](https://togithub.com/prettier/eslint-plugin-prettier/pull/564) [`ae7a73c`](https://togithub.com/prettier/eslint-plugin-prettier/commit/ae7a73c6c4b306c617c5dd9baaaa2ae7c0f9f44b) Thanks [@&#8203;auvred](https://togithub.com/auvred)! - fix: compatibility with prettier@3 without plugins
+
+</details>
+
+---
+
+#### Update typescript-eslint monorepo to v6 (major) ([#84](https://github.com/pleo-io/assign-random-codeowners/pull/84))
+
+<details>
+<summary>typescript-eslint/typescript-eslint (@&#8203;typescript-eslint/eslint-plugin)</summary>
+
+### [`v6.0.0`](https://togithub.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/eslint-plugin/CHANGELOG.md#600-2023-07-10)
+
+[Compare Source](https://togithub.com/typescript-eslint/typescript-eslint/compare/v5.62.0...v6.0.0)
+
+##### Bug Fixes
+
+-   bumped ts-api-utils to 0.0.39 ([#&#8203;6497](https://togithub.com/typescript-eslint/typescript-eslint/issues/6497)) ([217c710](https://togithub.com/typescript-eslint/typescript-eslint/commit/217c710d99445994b9c8db7b9bee9b9cc63bc4cb))
+-   correct handling of additionalProperties in object schemas ([#&#8203;6939](https://togithub.com/typescript-eslint/typescript-eslint/issues/6939)) ([489c7a5](https://togithub.com/typescript-eslint/typescript-eslint/commit/489c7a50ae99ef66df152a68fd447f7e42a23558))
+-   correct lint error after merge ([277fdb5](https://togithub.com/typescript-eslint/typescript-eslint/commit/277fdb5ac76bd761ae6f5d1052445dcff2e848a1))
+-   **eslint-plugin:** \[explicit-module-boundary-types] remove shouldTrackReferences option from schema ([#&#8203;5399](https://togithub.com/typescript-eslint/typescript-eslint/issues/5399)) ([6d32734](https://togithub.com/typescript-eslint/typescript-eslint/commit/6d32734b1312f60ee7d12d4bb19fc1cf52e7f0a5))
+-   **eslint-plugin:** allow parser@^6.0.0 ([#&#8203;6630](https://togithub.com/typescript-eslint/typescript-eslint/issues/6630)) ([92908bd](https://togithub.com/typescript-eslint/typescript-eslint/commit/92908bdd9c102ff599da6a4791e8ad3e6d3dc593))
+-   **eslint-plugin:** remove valid-typeof disable in eslint-recommended ([#&#8203;5381](https://togithub.com/typescript-eslint/typescript-eslint/issues/5381)) ([b82df5e](https://togithub.com/typescript-eslint/typescript-eslint/commit/b82df5eaed437727566cde2b53410001505f1b13))
+-   fix illegal decorator check ([#&#8203;6723](https://togithub.com/typescript-eslint/typescript-eslint/issues/6723)) ([c456f8c](https://togithub.com/typescript-eslint/typescript-eslint/commit/c456f8cdef5a931c631bfbcfc84d8a25caaf019f))
+-   rename typeParameters to typeArguments where needed ([#&#8203;5384](https://togithub.com/typescript-eslint/typescript-eslint/issues/5384)) ([08d757b](https://togithub.com/typescript-eslint/typescript-eslint/commit/08d757b26b00d0accea010e61ec42b4f753f993e))
+-   replace tsutils with ts-api-tools ([#&#8203;6428](https://togithub.com/typescript-eslint/typescript-eslint/issues/6428)) ([79327b4](https://togithub.com/typescript-eslint/typescript-eslint/commit/79327b4999999cde3003901b40527af002c4906a))
+-   **type-utils:** treat intrinsic types as if they are from lib and never match error types ([#&#8203;6869](https://togithub.com/typescript-eslint/typescript-eslint/issues/6869)) ([ecb57de](https://togithub.com/typescript-eslint/typescript-eslint/commit/ecb57de5eb50511bed163f6e1b27e31b8577344e))
+-   **typescript-estree:** account for namespace nesting in AST conversion ([#&#8203;6272](https://togithub.com/typescript-eslint/typescript-eslint/issues/6272)) ([09e3877](https://togithub.com/typescript-eslint/typescript-eslint/commit/09e38776c63fea3328f71df36644ee11dd137cc1))
+-   update `exports` field in package.json files ([#&#8203;6550](https://togithub.com/typescript-eslint/typescript-eslint/issues/6550)) ([53776c2](https://togithub.com/typescript-eslint/typescript-eslint/commit/53776c244f8bbdc852d57c7b313b0935e755ddc4))
+
+##### chore
+
+-   drop support for node v14.17, v17 ([#&#8203;5971](https://togithub.com/typescript-eslint/typescript-eslint/issues/5971)) ([cc62015](https://togithub.com/typescript-eslint/typescript-eslint/commit/cc62015b8ae5f207912ff8988e2a0b3fe9a79243))
+
+##### Features
+
+-   add new package `rule-tester` ([#&#8203;6777](https://togithub.com/typescript-eslint/typescript-eslint/issues/6777)) ([2ce1c1d](https://togithub.com/typescript-eslint/typescript-eslint/commit/2ce1c1d22c799a1ca027674fcb9b3a7ab0107428))
+-   add package.json exports for public packages ([#&#8203;6458](https://togithub.com/typescript-eslint/typescript-eslint/issues/6458)) ([d676683](https://togithub.com/typescript-eslint/typescript-eslint/commit/d6766838a05259556029acaac57dc7839b68c592))
+-   bump minimum supported TS version to 4.2.4 ([#&#8203;5915](https://togithub.com/typescript-eslint/typescript-eslint/issues/5915)) ([a8e71d5](https://togithub.com/typescript-eslint/typescript-eslint/commit/a8e71d52169f32ab9e836ec96d980ba52deffe12))
+-   bump ts-api-utils to v0.0.21 ([#&#8203;6459](https://togithub.com/typescript-eslint/typescript-eslint/issues/6459)) ([3915661](https://togithub.com/typescript-eslint/typescript-eslint/commit/391566172dbc6013be79952fc68a588bf653fa8d))
+-   bump ts-api-utils to v0.0.22 ([#&#8203;6472](https://togithub.com/typescript-eslint/typescript-eslint/issues/6472)) ([b88cd23](https://togithub.com/typescript-eslint/typescript-eslint/commit/b88cd2332921efcca7ec5f4176f19779346d963b))
+-   drop support for ESLint v6 ([#&#8203;5972](https://togithub.com/typescript-eslint/typescript-eslint/issues/5972)) ([bda806d](https://togithub.com/typescript-eslint/typescript-eslint/commit/bda806d78ee46133587d9383baff52d796a594e5))
+-   drop support for node v12 ([#&#8203;5918](https://togithub.com/typescript-eslint/typescript-eslint/issues/5918)) ([7e3fe9a](https://togithub.com/typescript-eslint/typescript-eslint/commit/7e3fe9a67abd394b0a114f2deb466edf5c9759ac))
+-   drop support for node v14 and test against node v20 ([#&#8203;7022](https://togithub.com/typescript-eslint/typescript-eslint/issues/7022)) ([e6235bf](https://togithub.com/typescript-eslint/typescript-eslint/commit/e6235bf61b781066653581b57b7cd976c9c4f905))
+-   **eslint-plugin:** \[prefer-nullish-coalescing]: add support for assignment expressions ([#&#8203;5234](https://togithub.com/typescript-eslint/typescript-eslint/issues/5234)) ([4bdbe67](https://togithub.com/typescript-eslint/typescript-eslint/commit/4bdbe67955fd591c25e58b13e674ba05bf5ed585))
+-   **eslint-plugin:** \[prefer-optional-chain] handle cases where the first operands are unrelated to the rest of the chain and add type info ([#&#8203;6397](https://togithub.com/typescript-eslint/typescript-eslint/issues/6397)) ([02a37c4](https://togithub.com/typescript-eslint/typescript-eslint/commit/02a37c4c79d9b83998b7ee1376be43b06e12b3a0))
+-   **eslint-plugin:** \[prefer-readonly-parameter-types] added an optional type allowlist ([#&#8203;4436](https://togithub.com/typescript-eslint/typescript-eslint/issues/4436)) ([c9427b7](https://togithub.com/typescript-eslint/typescript-eslint/commit/c9427b78b69f1a6a2453ef2df2be5bf96b7b00bc))
+-   **eslint-plugin:** \[restrict-plus-operands] change checkCompoundAssignments to skipCompoundAssignments ([#&#8203;7027](https://togithub.com/typescript-eslint/typescript-eslint/issues/7027)) ([dc801d8](https://togithub.com/typescript-eslint/typescript-eslint/commit/dc801d892ecc1af678ff37166481f4b69186164c))
+-   **eslint-plugin:** add config that disables type-aware linting ([#&#8203;6470](https://togithub.com/typescript-eslint/typescript-eslint/issues/6470)) ([3b063cf](https://togithub.com/typescript-eslint/typescript-eslint/commit/3b063cfadce50985f8ec6d8f44f5b1cbd5c1ea57))
+-   **eslint-plugin:** apply final v6 changes to configs ([#&#8203;7110](https://togithub.com/typescript-eslint/typescript-eslint/issues/7110)) ([c13ce0b](https://togithub.com/typescript-eslint/typescript-eslint/commit/c13ce0b4f7a74a6d8fecf78d25ebd8181f7a9119))
+-   **eslint-plugin:** deprecate no-type-alias ([#&#8203;6229](https://togithub.com/typescript-eslint/typescript-eslint/issues/6229)) ([820bdf2](https://togithub.com/typescript-eslint/typescript-eslint/commit/820bdf2a3934d4186d51186693ced02df64a57ce))
+-   **eslint-plugin:** final final config changes for v6 ([#&#8203;7157](https://togithub.com/typescript-eslint/typescript-eslint/issues/7157)) ([e35c5c1](https://togithub.com/typescript-eslint/typescript-eslint/commit/e35c5c1c39f3d76b916ad1c1ac2c7bf05b379193))
+-   **eslint-plugin:** rework configs: recommended, strict, stylistic; -type-checked ([#&#8203;5251](https://togithub.com/typescript-eslint/typescript-eslint/issues/5251)) ([5346b5b](https://togithub.com/typescript-eslint/typescript-eslint/commit/5346b5bbdbba81439ba761c282ba9cdcec7b45c8)), closes [#&#8203;5036](https://togithub.com/typescript-eslint/typescript-eslint/issues/5036) [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;3076](https://togithub.com/typescript-eslint/typescript-eslint/issues/3076) [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;5889](https://togithub.com/typescript-eslint/typescript-eslint/issues/5889) [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;5883](https://togithub.com/typescript-eslint/typescript-eslint/issues/5883) [#&#8203;4863](https://togithub.com/typescript-eslint/typescript-eslint/issues/4863) [#&#8203;5381](https://togithub.com/typescript-eslint/typescript-eslint/issues/5381) [#&#8203;5256](https://togithub.com/typescript-eslint/typescript-eslint/issues/5256) [#&#8203;5399](https://togithub.com/typescript-eslint/typescript-eslint/issues/5399)
+-   fork json schema types for better compat with ESLint rule validation ([#&#8203;6963](https://togithub.com/typescript-eslint/typescript-eslint/issues/6963)) ([a4967f2](https://togithub.com/typescript-eslint/typescript-eslint/commit/a4967f2e8cc7b0432d8dfe804772e60042c5384c))
+-   improve rule schemas, add test to validate schemas, add tooling to generate schema types ([#&#8203;6899](https://togithub.com/typescript-eslint/typescript-eslint/issues/6899)) ([acc1a43](https://togithub.com/typescript-eslint/typescript-eslint/commit/acc1a43e02a403ff74a54c28c2c495f00d0be038))
+-   made BaseNode.parent non-optional ([#&#8203;5252](https://togithub.com/typescript-eslint/typescript-eslint/issues/5252)) ([a4768f3](https://togithub.com/typescript-eslint/typescript-eslint/commit/a4768f38ef4943873c1e9443e8cd101a663ac3c0)), closes [#&#8203;5036](https://togithub.com/typescript-eslint/typescript-eslint/issues/5036) [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;3076](https://togithub.com/typescript-eslint/typescript-eslint/issues/3076) [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;5889](https://togithub.com/typescript-eslint/typescript-eslint/issues/5889) [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;5883](https://togithub.com/typescript-eslint/typescript-eslint/issues/5883) [#&#8203;4863](https://togithub.com/typescript-eslint/typescript-eslint/issues/4863) [#&#8203;5381](https://togithub.com/typescript-eslint/typescript-eslint/issues/5381) [#&#8203;5256](https://togithub.com/typescript-eslint/typescript-eslint/issues/5256) [#&#8203;5399](https://togithub.com/typescript-eslint/typescript-eslint/issues/5399)
+-   remove `RuleTester` in `/utils` in favour of the new `/rule-tester` package ([#&#8203;6816](https://togithub.com/typescript-eslint/typescript-eslint/issues/6816)) ([c33f497](https://togithub.com/typescript-eslint/typescript-eslint/commit/c33f497ad8aec7c123c7374f7aff3e24025fe861))
+-   remove partial type-information program ([#&#8203;6066](https://togithub.com/typescript-eslint/typescript-eslint/issues/6066)) ([7fc062a](https://togithub.com/typescript-eslint/typescript-eslint/commit/7fc062abc30a73093cd943c2cb808ae373fe12d9))
+-   **typescript-estree:** add type checker wrapper APIs to ParserServicesWithTypeInformation ([#&#8203;6404](https://togithub.com/typescript-eslint/typescript-eslint/issues/6404)) ([62d5755](https://togithub.com/typescript-eslint/typescript-eslint/commit/62d57559564fb08512eafe03a2c1b167c4377601))
+-   **typescript-estree:** added allowInvalidAST option to not throw on invalid tokens ([#&#8203;6247](https://togithub.com/typescript-eslint/typescript-eslint/issues/6247)) ([a3b177d](https://togithub.com/typescript-eslint/typescript-eslint/commit/a3b177d59adaf8ea76b205befc8b12d86447f1fb))
+-   **typescript-estree:** check for illegal decorators on function declarations ([#&#8203;6590](https://togithub.com/typescript-eslint/typescript-eslint/issues/6590)) ([1b39cfd](https://togithub.com/typescript-eslint/typescript-eslint/commit/1b39cfd307955deb8e407cf8dd3a6ca1ed1b8df6))
+-   **typescript-estree:** check modifiers on every node ([#&#8203;6615](https://togithub.com/typescript-eslint/typescript-eslint/issues/6615)) ([62d6230](https://togithub.com/typescript-eslint/typescript-eslint/commit/62d62304e16b553274a80d8ab2653543a22f2391))
+-   **typescript-estree:** remove optionality from AST boolean properties ([#&#8203;6274](https://togithub.com/typescript-eslint/typescript-eslint/issues/6274)) ([df131e2](https://togithub.com/typescript-eslint/typescript-eslint/commit/df131e258c93e5714c88c0373cfeb2e1e75afc75))
+-   **typescript-estree:** throw errors for object methods without function bodies ([#&#8203;6589](https://togithub.com/typescript-eslint/typescript-eslint/issues/6589)) ([1d78576](https://togithub.com/typescript-eslint/typescript-eslint/commit/1d78576d41323e35c2d2a2ecc92f6ee76ed61d57))
+-   **typescript-estree:** throw errors when abstract property has initializer ([#&#8203;6613](https://togithub.com/typescript-eslint/typescript-eslint/issues/6613)) ([dcdbc76](https://togithub.com/typescript-eslint/typescript-eslint/commit/dcdbc76d5418a383968d15e32d2eba7a9d2d7e79))
+
+##### BREAKING CHANGES
+
+-   **eslint-plugin:** Adds an additional class of checks to the rule
+-   drop support for ESLint v6
+-   drops support for node v17
+-   Bumps the minimum supported range and removes handling for old versions
+-   drops support for node v12
+
+You can read about our [versioning strategy](https://main--typescript-eslint.netlify.app/users/versioning) and [releases](https://main--typescript-eslint.netlify.app/users/releases) on our website.
+
+### [`v5.62.0`](https://togithub.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/eslint-plugin/CHANGELOG.md#5620-2023-07-10)
+
+[Compare Source](https://togithub.com/typescript-eslint/typescript-eslint/compare/v5.61.0...v5.62.0)
+
+##### Bug Fixes
+
+-   **eslint-plugin:** \[comma-spacing] allow no space after trailing comma in objects and arrays ([#&#8203;6938](https://togithub.com/typescript-eslint/typescript-eslint/issues/6938)) ([24bdacc](https://togithub.com/typescript-eslint/typescript-eslint/commit/24bdacc7e5df40c92031a1bd7e9815d66a35b31d))
+-   **eslint-plugin:** \[prefer-includes] escape special characters ([#&#8203;7161](https://togithub.com/typescript-eslint/typescript-eslint/issues/7161)) ([5a347a5](https://togithub.com/typescript-eslint/typescript-eslint/commit/5a347a5978bc5737412bd12d61eb6058163cf4a0)), closes [#&#8203;7145](https://togithub.com/typescript-eslint/typescript-eslint/issues/7145)
+-   **eslint-plugin:** replace auto-fix of class literal property style rule with suggestion ([#&#8203;7054](https://togithub.com/typescript-eslint/typescript-eslint/issues/7054)) ([a8c824a](https://togithub.com/typescript-eslint/typescript-eslint/commit/a8c824a1e84453f93cd2b464fc102bc878c1aff3))
+
+##### Features
+
+-   **eslint-plugin:** \[prefer-nullish-coalescing] add `ignorePrimitives` option ([#&#8203;6487](https://togithub.com/typescript-eslint/typescript-eslint/issues/6487)) ([6edaa04](https://togithub.com/typescript-eslint/typescript-eslint/commit/6edaa04565576f0af7e60bc08602bd781c847804))
+
+You can read about our [versioning strategy](https://main--typescript-eslint.netlify.app/users/versioning) and [releases](https://main--typescript-eslint.netlify.app/users/releases) on our website.
+
+</details>
+
+<details>
+<summary>typescript-eslint/typescript-eslint (@&#8203;typescript-eslint/parser)</summary>
+
+### [`v6.0.0`](https://togithub.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/parser/CHANGELOG.md#600-2023-07-10)
+
+[Compare Source](https://togithub.com/typescript-eslint/typescript-eslint/compare/v5.62.0...v6.0.0)
+
+##### Bug Fixes
+
+-   update `exports` field in package.json files ([#&#8203;6550](https://togithub.com/typescript-eslint/typescript-eslint/issues/6550)) ([53776c2](https://togithub.com/typescript-eslint/typescript-eslint/commit/53776c244f8bbdc852d57c7b313b0935e755ddc4))
+
+##### chore
+
+-   drop support for node v14.17, v17 ([#&#8203;5971](https://togithub.com/typescript-eslint/typescript-eslint/issues/5971)) ([cc62015](https://togithub.com/typescript-eslint/typescript-eslint/commit/cc62015b8ae5f207912ff8988e2a0b3fe9a79243))
+
+##### Features
+
+-   add new package `rule-tester` ([#&#8203;6777](https://togithub.com/typescript-eslint/typescript-eslint/issues/6777)) ([2ce1c1d](https://togithub.com/typescript-eslint/typescript-eslint/commit/2ce1c1d22c799a1ca027674fcb9b3a7ab0107428))
+-   add package.json exports for public packages ([#&#8203;6458](https://togithub.com/typescript-eslint/typescript-eslint/issues/6458)) ([d676683](https://togithub.com/typescript-eslint/typescript-eslint/commit/d6766838a05259556029acaac57dc7839b68c592))
+-   drop support for ESLint v6 ([#&#8203;5972](https://togithub.com/typescript-eslint/typescript-eslint/issues/5972)) ([bda806d](https://togithub.com/typescript-eslint/typescript-eslint/commit/bda806d78ee46133587d9383baff52d796a594e5))
+-   drop support for node v12 ([#&#8203;5918](https://togithub.com/typescript-eslint/typescript-eslint/issues/5918)) ([7e3fe9a](https://togithub.com/typescript-eslint/typescript-eslint/commit/7e3fe9a67abd394b0a114f2deb466edf5c9759ac))
+-   drop support for node v14 and test against node v20 ([#&#8203;7022](https://togithub.com/typescript-eslint/typescript-eslint/issues/7022)) ([e6235bf](https://togithub.com/typescript-eslint/typescript-eslint/commit/e6235bf61b781066653581b57b7cd976c9c4f905))
+-   remove partial type-information program ([#&#8203;6066](https://togithub.com/typescript-eslint/typescript-eslint/issues/6066)) ([7fc062a](https://togithub.com/typescript-eslint/typescript-eslint/commit/7fc062abc30a73093cd943c2cb808ae373fe12d9))
+-   **scope-manager:** ignore ECMA version ([#&#8203;5889](https://togithub.com/typescript-eslint/typescript-eslint/issues/5889)) ([f2330f7](https://togithub.com/typescript-eslint/typescript-eslint/commit/f2330f79739eb93e3c290ccc6e810a01e097eda0)), closes [#&#8203;5834](https://togithub.com/typescript-eslint/typescript-eslint/issues/5834) [#&#8203;5882](https://togithub.com/typescript-eslint/typescript-eslint/issues/5882) [#&#8203;5864](https://togithub.com/typescript-eslint/typescript-eslint/issues/5864) [#&#8203;5883](https://togithub.com/typescript-eslint/typescript-eslint/issues/5883)
+-   **typescript-estree:** added allowInvalidAST option to not throw on invalid tokens ([#&#8203;6247](https://togithub.com/typescript-eslint/typescript-eslint/issues/6247)) ([a3b177d](https://togithub.com/typescript-eslint/typescript-eslint/commit/a3b177d59adaf8ea76b205befc8b12d86447f1fb))
+-   **typescript-estree:** allow providing code as a ts.SourceFile ([#&#8203;5892](https://togithub.com/typescript-eslint/typescript-eslint/issues/5892)) ([af41b7f](https://togithub.com/typescript-eslint/typescript-eslint/commit/af41b7fa7b9b8f3023fdabd40846598d5d4d4f61))
+-   **typescript-estree:** deprecate createDefaultProgram ([#&#8203;5890](https://togithub.com/typescript-eslint/typescript-eslint/issues/5890)) ([426d6b6](https://togithub.com/typescript-eslint/typescript-eslint/commit/426d6b647e6df3e312d1cef3e28dadaef6675fd3))
+-   **typescript-estree:** remove optionality from AST boolean properties ([#&#8203;6274](https://togithub.com/typescript-eslint/typescript-eslint/issues/6274)) ([df131e2](https://togithub.com/typescript-eslint/typescript-eslint/commit/df131e258c93e5714c88c0373cfeb2e1e75afc75))
+
+##### BREAKING CHANGES
+
+-   drop support for ESLint v6
+-   drops support for node v17
+-   drops support for node v12
+
+You can read about our [versioning strategy](https://main--typescript-eslint.netlify.app/users/versioning) and [releases](https://main--typescript-eslint.netlify.app/users/releases) on our website.
+
+### [`v5.62.0`](https://togithub.com/typescript-eslint/typescript-eslint/blob/HEAD/packages/parser/CHANGELOG.md#5620-2023-07-10)
+
+[Compare Source](https://togithub.com/typescript-eslint/typescript-eslint/compare/v5.61.0...v5.62.0)
+
+**Note:** Version bump only for package [@&#8203;typescript-eslint/parser](https://togithub.com/typescript-eslint/parser)
+
+You can read about our [versioning strategy](https://main--typescript-eslint.netlify.app/users/versioning) and [releases](https://main--typescript-eslint.netlify.app/users/releases) on our website.
+
+</details>
+
+---
+
+#### Update dependency prettier to v3 ([#82](https://github.com/pleo-io/assign-random-codeowners/pull/82))
+
+<details>
+<summary>prettier/prettier (prettier)</summary>
+
+### [`v3.0.0`](https://togithub.com/prettier/prettier/blob/HEAD/CHANGELOG.md#300)
+
+[Compare Source](https://togithub.com/prettier/prettier/compare/2.8.8...3.0.0)
+
+[diff](https://togithub.com/prettier/prettier/compare/3.0.0-alpha.6...3.0.0)
+
+🔗 [Release Notes](https://prettier.io/blog/2023/07/05/3.0.0.html)
+
+</details>
+
+---
+
+#### Update dependency pleo-io/centralized-templates to v21 ([#79](https://github.com/pleo-io/assign-random-codeowners/pull/79))
+
+<details>
+<summary>pleo-io/centralized-templates</summary>
+
+### [`v21.0.0`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v2100-Thu-Jun-08-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.21.13...v21.0.0)
+
+
+##### SRE-2766: Use IAM Role for AWS Auth ([#&#8203;809](https://togithub.com/pleo-io/centralized-templates/pull/809))
+
+Switch to IAM role with ability to read & write to ECR, deploy to feature branch namespaces, and support in GitOps migration. Matches the IAM user we create in Moons today in https://github.com/pleo-io/terraform-modules/blob/main/github-secrets-ecr/main.tf#L19-L22. This role is assumed using OIDC provider and requires that it's run in only the moons repo.
+
+We have added a few of our AWS account IDs as [github org secrets](https://togithub.com/organizations/pleo-io/settings/variables/actions). Accounts Ids are non-sensitive. We've done this to reduce the likelihood of error due to a typo and to make it easier to review workflow PRs where we need to reference the ID.
+
+We have updated all uses of `base_moon` in https://github.com/pleo-io/terraform/tree/main/components/moons to make sure this is deployed for all known moons.
+
+Related PRs:
+
+-   [https://github.com/pleo-io/deimos/pull/6969](https://togithub.com/pleo-io/deimos/pull/6969)
+-   [https://github.com/pleo-io/terraform/pull/4984](https://togithub.com/pleo-io/terraform/pull/4984)
+-   [https://github.com/pleo-io/terraform/pull/5001](https://togithub.com/pleo-io/terraform/pull/5001)
+-   [https://github.com/pleo-io/terraform/pull/5008](https://togithub.com/pleo-io/terraform/pull/5008)
+-   [https://github.com/pleo-io/terraform/pull/5018](https://togithub.com/pleo-io/terraform/pull/5018)
+-   [https://github.com/pleo-io/terraform/pull/5020](https://togithub.com/pleo-io/terraform/pull/5020)
+-   [https://github.com/pleo-io/terraform-modules/pull/532](https://togithub.com/pleo-io/terraform-modules/pull/532)
+
+***
+
+##### 💥 Major changes
+
+-   SRE-2766: Use IAM Role for AWS Auth [#&#8203;809](https://togithub.com/pleo-io/centralized-templates/pull/809) ([@&#8203;braedongough](https://togithub.com/braedongough))
+
+##### Authors: 1
+
+-   Braedon Gough ([@&#8203;braedongough](https://togithub.com/braedongough))
+
+***
+
+### [`v20.21.13`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v202113-Wed-Jun-07-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.21.12...v20.21.13)
+
+
+##### SRE: fix release.yaml workflow bug with product-dev ([#&#8203;808](https://togithub.com/pleo-io/centralized-templates/pull/808))
+
+<!-- 
+What are the changes this PR? 
+These release notes are shown in all repositories that use our templates, so make them nice!
+-->
+
+Fix release.yaml workflow bug
+
+***
+
+##### 🐞 Fixes
+
+-   SRE: fix release.yaml workflow bug with product-dev [#&#8203;808](https://togithub.com/pleo-io/centralized-templates/pull/808) ([@&#8203;PassFaid](https://togithub.com/PassFaid))
+
+##### Authors: 1
+
+-   Faidon Passias ([@&#8203;PassFaid](https://togithub.com/PassFaid))
+
+***
+
+### [`v20.21.12`](https://togithub.com/pleo-io/centralized-templates/blob/HEAD/CHANGELOG.md#v202112-Wed-Jun-07-2023)
+
+[Compare Source](https://togithub.com/pleo-io/centralized-templates/compare/v20.21.11...v20.21.12)
+
+
+##### SRE-2845: Add ci product dev ([#&#8203;793](https://togithub.com/pleo-io/centralized-templates/pull/793))
+
+Added product-dev environment ECR for Kotlin/NodeJS moons.
+Added variable productDevDeploymentEnabled. Setting this to `true` will trigger pushing the image to `product-dev` environment
+
+***
+
+##### 🐞 Fixes
+
+-   SRE-2845: Add ci product dev [#&#8203;793](https://togithub.com/pleo-io/centralized-templates/pull/793) ([@&#8203;PassFaid](https://togithub.com/PassFaid) [@&#8203;braedongough](https://togithub.com/braedongough))
+
+##### 🏠 Internal
+
+-   chore(deps): update docker/setup-buildx-action action to v2.5.0 [#&#8203;805](https://togithub.com/pleo-io/centralized-templates/pull/805) (devx+renovate@pleo.io [@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+##### Authors: 4
+
+-   Braedon Gough ([@&#8203;braedongough](https://togithub.com/braedongough))
+-   Faidon Passias ([@&#8203;PassFaid](https://togithub.com/PassFaid))
+-   Renovate (devx+renovate@pleo.io)
+-   Renovate (Pleo) ([@&#8203;pleo-bot-renovate](https://togithub.com/pleo-bot-renovate))
+
+***
+
+</details>
+
+---
+
+#### [DEVX-1436] Update CODEOWNERS after devexp & quality merge into devex ([#77](https://github.com/pleo-io/assign-random-codeowners/pull/77))
+
+Update CODEOWNERS after devexp & quality merge into devex
+
+---
+
+#### 🐞 Fixes
+
+- Bump semver from 6.3.0 to 6.3.1 [#85](https://github.com/pleo-io/assign-random-codeowners/pull/85) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@andersfischernielsen](https://github.com/andersfischernielsen))
+
+#### ⚠️ Pushed to `main`
+
+- Update dependency eslint-plugin-import to v2.28.0 (devx+renovate@pleo.io)
+- Update dependency eslint-config-prettier to v8.9.0 (devx+renovate@pleo.io)
+- Update dependency jest to v29.6.2 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v6.2.0 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.71 (devx+renovate@pleo.io)
+- Update dependency centralized-templates to v21.6.4 (devx+renovate@pleo.io)
+- Update dependency centralized-templates to v21.6.3 (devx+renovate@pleo.io)
+- Update dependency @swc/jest to v0.2.27 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v6.1.0 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.70 (devx+renovate@pleo.io)
+- Update dependency centralized-templates to v21.6.2 (devx+renovate@pleo.io)
+- Update dependency eslint to v8.45.0 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.69 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.5.1 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.5.0 (devx+renovate@pleo.io)
+- Update dependency @types/jest to v29.5.3 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.4.1 (devx+renovate@pleo.io)
+- Update dependency jest to v29.6.1 (devx+renovate@pleo.io)
+- Update dependency jest to v29.6.0 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.68 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v5.61.0 (devx+renovate@pleo.io)
+- Update dependency eslint to v8.44.0 (devx+renovate@pleo.io)
+- Update dependency typescript to v5.1.6 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.67 (devx+renovate@pleo.io)
+- Update dependency typescript to v5.1.5 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.3.2 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v5.60.1 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v5.60.0 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.3.1 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.66 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.3.0 (devx+renovate@pleo.io)
+- Update dependency eslint to v8.43.0 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.65 (devx+renovate@pleo.io)
+- Update dependency typescript to v5.1.3 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v5.59.11 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v21.2.0 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.64 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.63 (devx+renovate@pleo.io)
+- Update dependency eslint to v8.42.0 (devx+renovate@pleo.io)
+- Update typescript-eslint monorepo to v5.59.9 (devx+renovate@pleo.io)
+- Update dependency @types/jest to v29.5.2 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v20.21.11 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.62 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v20.21.10 (devx+renovate@pleo.io)
+- Update dependency @swc/core to v1.3.61 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v20.21.9 (devx+renovate@pleo.io)
+- Update dependency pleo-io/centralized-templates to v20.21.6 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency @swc/core to v1.3.60 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update dependency pleo-io/centralized-templates to v20.21.4 ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+
+#### 🏠 Internal
+
+- Update dependency centralized-templates to v23 [#91](https://github.com/pleo-io/assign-random-codeowners/pull/91) (devx+renovate@pleo.io [@kodiakhq[bot]](https://github.com/kodiakhq[bot]) [@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Simplify implementation by separation [#90](https://github.com/pleo-io/assign-random-codeowners/pull/90) ([@LittleGreenYoda42](https://github.com/LittleGreenYoda42))
+- Update files based on repository configuration [#89](https://github.com/pleo-io/assign-random-codeowners/pull/89) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#88](https://github.com/pleo-io/assign-random-codeowners/pull/88) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#87](https://github.com/pleo-io/assign-random-codeowners/pull/87) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update dependency eslint-plugin-prettier to v5 [#86](https://github.com/pleo-io/assign-random-codeowners/pull/86) (devx+renovate@pleo.io [@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update typescript-eslint monorepo to v6 (major) [#84](https://github.com/pleo-io/assign-random-codeowners/pull/84) (devx+renovate@pleo.io [@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update files based on repository configuration [#83](https://github.com/pleo-io/assign-random-codeowners/pull/83) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update dependency prettier to v3 [#82](https://github.com/pleo-io/assign-random-codeowners/pull/82) (devx+renovate@pleo.io [@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update files based on repository configuration [#81](https://github.com/pleo-io/assign-random-codeowners/pull/81) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Set missing 'engines' property in 'package.json' [#80](https://github.com/pleo-io/assign-random-codeowners/pull/80) ([@andersfischernielsen](https://github.com/andersfischernielsen) [@LittleGreenYoda42](https://github.com/LittleGreenYoda42))
+- Update dependency pleo-io/centralized-templates to v21 [#79](https://github.com/pleo-io/assign-random-codeowners/pull/79) (devx+renovate@pleo.io [@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Update files based on repository configuration [#78](https://github.com/pleo-io/assign-random-codeowners/pull/78) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- Update files based on repository configuration [#76](https://github.com/pleo-io/assign-random-codeowners/pull/76) ([@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot]))
+- [DEVX-1436] Update CODEOWNERS after devexp & quality merge into devex [#77](https://github.com/pleo-io/assign-random-codeowners/pull/77) ([@Niceplace](https://github.com/Niceplace) [@LittleGreenYoda42](https://github.com/LittleGreenYoda42))
+
+#### Authors: 8
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@kodiakhq[bot]](https://github.com/kodiakhq[bot])
+- [@pleo-file-distributor[bot]](https://github.com/pleo-file-distributor[bot])
+- Anders Fischer-Nielsen ([@andersfischernielsen](https://github.com/andersfischernielsen))
+- Martin Elias ([@LittleGreenYoda42](https://github.com/LittleGreenYoda42))
+- Renovate (devx+renovate@pleo.io)
+- Renovate (Pleo) ([@pleo-bot-renovate](https://github.com/pleo-bot-renovate))
+- Simon Beaulieu ([@Niceplace](https://github.com/Niceplace))
+
+---
+
 # v0.2.10 (Thu May 25 2023)
 
 ### Release Notes
