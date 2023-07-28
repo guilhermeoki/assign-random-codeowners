@@ -9,17 +9,11 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    validPaths: function() {
-        return validPaths;
-    },
     setup: function() {
         return setup;
     },
     extractPullRequestPayload: function() {
         return extractPullRequestPayload;
-    },
-    extractAssigneeCount: function() {
-        return extractAssigneeCount;
     },
     extractChangedFiles: function() {
         return extractChangedFiles;
@@ -39,65 +33,59 @@ _export(exports, {
 });
 const _core = require("@actions/core");
 const _github = require("@actions/github");
-const _fs = require("fs");
-const _codeownersutils = require("codeowners-utils");
-const validPaths = [
-    'CODEOWNERS',
-    '.github/CODEOWNERS',
-    'docs/CODEOWNERS'
-];
+const _reviewers = require("./reviewers");
+const _codeowners = require("./codeowners");
+const stringify = (input)=>JSON.stringify(input);
 const setup = ()=>{
-    const toAssign = (0, _core.getInput)('reviewers-to-assign', {
+    const configParams = getConfigParams();
+    const token = getGitHubToken();
+    const octokit = (0, _github.getOctokit)(token);
+    return {
+        ...configParams,
+        octokit
+    };
+};
+const getConfigParams = ()=>{
+    const inputReviewers = (0, _core.getInput)('reviewers-to-assign', {
         required: true
     });
-    const reviewers = Number.parseInt(toAssign);
-    const assignFromChanges = (0, _core.getInput)('assign-from-changed-files') === 'true' || (0, _core.getInput)('assign-from-changed-files') === 'True';
-    const assignIndividuals = (0, _core.getInput)('assign-individuals-from-teams') === 'true' || (0, _core.getInput)('assign-individuals-from-teams') === 'True';
+    const reviewers = Number.parseInt(inputReviewers);
+    const assignFromChanges = (0, _core.getInput)('assign-from-changed-files').toLowerCase() === 'true';
+    const assignIndividuals = (0, _core.getInput)('assign-individuals-from-teams').toLowerCase() === 'true';
+    return {
+        reviewers,
+        assignFromChanges,
+        assignIndividuals
+    };
+};
+const getGitHubToken = ()=>{
     const token = process.env['GITHUB_TOKEN'];
     if (!token) {
         (0, _core.error)(`Did not find a GITHUB_TOKEN in the environment.`);
         process.exit(1);
     }
-    const octokit = (0, _github.getOctokit)(token);
-    return {
-        reviewers,
-        assignFromChanges,
-        assignIndividuals,
-        octokit
-    };
+    return token;
 };
-const stringify = (input)=>JSON.stringify(input);
 const extractPullRequestPayload = (context)=>{
-    const { payload: { pull_request: payload  } , repo: { repo , owner  }  } = context;
+    const { payload: { pull_request: payload }, repo: { repo, owner } } = context;
     const author = payload?.['user']?.['login'];
-    return payload && repo && owner ? {
+    const pullRequest = payload && repo && owner ? {
         number: payload.number,
         repo,
         owner,
         author
     } : undefined;
+    if (!pullRequest) {
+        (0, _core.error)("Pull Request payload was not found. Is the action triggered by the 'pull-request' event?");
+        process.exit(1);
+    }
+    return pullRequest;
 };
-const extractAssigneeCount = (pullRequest)=>async (octokit)=>{
-        const { owner , repo , number: pull_number  } = pullRequest;
-        (0, _core.info)(`Requesting current reviewers in PR #${pull_number} via the GitHub API.`);
-        const { data: { teams , users  } , status  } = await octokit.rest.pulls.listRequestedReviewers({
-            owner,
-            repo,
-            pull_number
-        });
-        (0, _core.info)(`[${status}] Found assigned reviewer teams:`);
-        const teamNames = teams.map((team)=>team.name);
-        (0, _core.info)(stringify(teamNames));
-        (0, _core.info)(`[${status}] Found assigned reviewer users:`);
-        const userNames = users.map((user)=>user.login);
-        (0, _core.info)(stringify(userNames));
-        return teams.length + users.length;
-    };
 const extractChangedFiles = (assignFromChanges, pullRequest)=>async (octokit)=>{
         if (!assignFromChanges) return [];
-        const { owner , repo , number: pull_number  } = pullRequest;
+        const { owner, repo, number: pull_number } = pullRequest;
         (0, _core.info)(`Requesting files changed in PR #${pull_number} via the GitHub API.`);
-        const { data: changedFiles , status  } = await octokit.rest.pulls.listFiles({
+        const { data: changedFiles, status } = await octokit.rest.pulls.listFiles({
             owner,
             repo,
             pull_number
@@ -117,7 +105,7 @@ const fetchTeamMembers = (organisation, codeowners)=>async (octokit)=>{
             (0, _core.info)(`Requesting team members for team '${organisation}/${team}' via the GitHub API.`);
             // Fetch members from each team since there's currently no way
             // to fetch all teams with members from a GitHub organisation.
-            const { data: teamMembers , status  } = await octokit.rest.teams.listMembersInOrg({
+            const { data: teamMembers, status } = await octokit.rest.teams.listMembersInOrg({
                 org: organisation,
                 team_slug: extractTeamSlug(team)
             });
@@ -139,7 +127,7 @@ const fetchTeamMembers = (organisation, codeowners)=>async (octokit)=>{
         return joined;
     };
 const selectReviewers = async (changedFiles, codeowners, teamMembers, options)=>{
-    const { assignedReviewers , reviewers , assignIndividuals , author  } = options;
+    const { assignedReviewers, reviewers, assignIndividuals, author } = options;
     const selectedTeams = new Set();
     const selectedUsers = new Set();
     const assignees = ()=>selectedTeams.size + selectedUsers.size + assignedReviewers;
@@ -205,14 +193,14 @@ const selectReviewers = async (changedFiles, codeowners, teamMembers, options)=>
     };
 };
 const assignReviewers = (pullRequest, reviewers)=>async (octokit)=>{
-        const { repo , owner , number  } = pullRequest;
-        const { teams , users , count  } = reviewers;
+        const { repo, owner, number } = pullRequest;
+        const { teams, users, count } = reviewers;
         if (count === 0) {
             (0, _core.info)('No reviewers were selected. Skipping requesting reviewers.');
             return reviewers;
         }
         (0, _core.info)(`Requesting ${count} reviewers via the GitHub API.`);
-        const { data: assigned , status  } = await octokit.rest.pulls.requestReviewers({
+        const { data: assigned, status } = await octokit.rest.pulls.requestReviewers({
             owner,
             repo,
             pull_number: number,
@@ -233,28 +221,14 @@ const assignReviewers = (pullRequest, reviewers)=>async (octokit)=>{
         }
         return reviewers;
     };
+const isCITestRun = process.env['CI_TEST'];
 const run = async ()=>{
-    if (process.env['CI_TEST']) return;
+    if (isCITestRun) return;
     try {
-        const { assignFromChanges , reviewers , assignIndividuals , octokit  } = setup();
-        const codeownersLocation = validPaths.find((path)=>(0, _fs.existsSync)(path));
-        if (!codeownersLocation) {
-            (0, _core.error)(`Did not find a CODEOWNERS file in: ${stringify(validPaths)}.`);
-            process.exit(1);
-        }
-        (0, _core.info)(`Found CODEOWNERS at ${codeownersLocation}`);
+        const { reviewers, assignFromChanges, assignIndividuals, octokit } = setup();
         const pullRequest = extractPullRequestPayload(_github.context);
-        if (!pullRequest) {
-            (0, _core.error)("Pull Request payload was not found. Is the action triggered by the 'pull-request' event?");
-            process.exit(1);
-        }
-        const codeownersContents = await _fs.promises.readFile(codeownersLocation, {
-            encoding: 'utf-8'
-        });
-        const codeowners = (0, _codeownersutils.parse)(codeownersContents);
-        (0, _core.info)('Parsed CODEOWNERS:');
-        (0, _core.info)(stringify(codeowners));
-        const assignedReviewers = await extractAssigneeCount(pullRequest)(octokit);
+        const codeowners = await (0, _codeowners.getCodeowners)();
+        const assignedReviewers = await (0, _reviewers.extractAssigneeCount)(pullRequest)(octokit);
         if (assignedReviewers > reviewers) {
             (0, _core.info)(`Saw ${assignedReviewers} assigned reviewers - skipping CODEOWNERS assignment.`);
             process.exit(0);

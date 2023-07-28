@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 const _assign = require("./assign");
 const _core = /*#__PURE__*/ _interop_require_wildcard(require("@actions/core"));
+const _reviewers = require("./reviewers");
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
     var cacheBabelInterop = new WeakMap();
@@ -50,8 +51,13 @@ beforeEach(()=>{
     process.env['ASSIGN-INDIVIDUALS-FROM-TEAMS'] = 'false';
 });
 describe('Input handling', ()=>{
+    beforeEach(()=>{
+        jest.spyOn(process, 'exit').mockImplementation();
+    });
+    afterEach(()=>{
+        jest.restoreAllMocks();
+    });
     it('does not throw if required inputs are present', async ()=>{
-        const exitMock = jest.spyOn(process, 'exit').mockImplementation();
         const infoMessages = [];
         jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
             infoMessages.push(s);
@@ -59,7 +65,6 @@ describe('Input handling', ()=>{
         });
         process.env['INPUT_ASSIGN-FROM-CHANGED-FILES'] = 'false';
         (0, _assign.setup)();
-        exitMock.mockRestore();
     });
     it('can parse inputs if present', async ()=>{
         process.env['INPUT_ASSIGN-FROM-CHANGED-FILES'] = 'false';
@@ -72,7 +77,6 @@ describe('Input handling', ()=>{
         expect(result.octokit).not.toBeNull();
     });
     it('throws if GitHub token is not present', async ()=>{
-        const exitMock = jest.spyOn(process, 'exit').mockImplementation();
         const infoMessages = [];
         jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
             infoMessages.push(s);
@@ -81,10 +85,8 @@ describe('Input handling', ()=>{
         delete process.env['GITHUB_TOKEN'];
         expect(()=>(0, _assign.setup)()).toThrow();
         expect(infoMessages.some((e)=>/::error::.*GITHUB_TOKEN/.test(e))).toBeTruthy();
-        exitMock.mockRestore();
     });
     it("throws if 'reviewers-to-assign' is not present", async ()=>{
-        const exitMock = jest.spyOn(process, 'exit').mockImplementation();
         const infoMessages = [];
         jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
             infoMessages.push(s);
@@ -92,10 +94,8 @@ describe('Input handling', ()=>{
         });
         delete process.env['INPUT_REVIEWERS-TO-ASSIGN'];
         expect(()=>(0, _assign.setup)()).toThrow();
-        exitMock.mockRestore();
     });
     it("does not throw if 'assign-from-changed-files' is not present", async ()=>{
-        const exitMock = jest.spyOn(process, 'exit').mockImplementation();
         const infoMessages = [];
         jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
             infoMessages.push(s);
@@ -103,10 +103,8 @@ describe('Input handling', ()=>{
         });
         delete process.env['INPUT_ASSIGN-FROM-CHANGED-FILES'];
         expect(()=>(0, _assign.setup)()).not.toThrow();
-        exitMock.mockRestore();
     });
     it("does not throw if 'assign-individuals-from-teams' is not present", async ()=>{
-        const exitMock = jest.spyOn(process, 'exit').mockImplementation();
         const infoMessages = [];
         jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
             infoMessages.push(s);
@@ -114,10 +112,16 @@ describe('Input handling', ()=>{
         });
         delete process.env['INPUT_ASSIGN-INDIVIDUALS-FROM-TEAMS'];
         expect(()=>(0, _assign.setup)()).not.toThrow();
-        exitMock.mockRestore();
     });
 });
 describe('Payload handling', ()=>{
+    let exitMock;
+    beforeEach(()=>{
+        exitMock = jest.spyOn(process, 'exit').mockImplementation();
+    });
+    afterEach(()=>{
+        jest.restoreAllMocks();
+    });
     it('can extract information from pull request payloads', ()=>{
         const context = {
             payload: {
@@ -160,7 +164,7 @@ describe('Payload handling', ()=>{
             author: 'username'
         });
     });
-    it('returns undefined for missing pull request payloads', ()=>{
+    it('exits with exit code `1` for missing pull request payloads', ()=>{
         const context = {
             payload: {
                 issue: {
@@ -189,10 +193,16 @@ describe('Payload handling', ()=>{
                 repo: 'repo'
             }
         };
-        const result = (0, _assign.extractPullRequestPayload)(context);
-        expect(result).toBe(undefined);
+        const infoMessages = [];
+        jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
+            infoMessages.push(s);
+            return true;
+        });
+        (0, _assign.extractPullRequestPayload)(context);
+        expect(infoMessages.some((e)=>/Pull Request payload was not found/.test(e))).toBeTruthy();
+        expect(exitMock).toHaveBeenCalledWith(1);
     });
-    it('returns undefined for missing repository information in payloads', ()=>{
+    it('exits with exit code `1` for missing repository information in payloads', ()=>{
         const context = {
             payload: {
                 pull_request: {
@@ -204,8 +214,14 @@ describe('Payload handling', ()=>{
                 repo: undefined
             }
         };
-        const result = (0, _assign.extractPullRequestPayload)(context);
-        expect(result).toBe(undefined);
+        const infoMessages = [];
+        jest.spyOn(process.stdout, 'write').mockImplementation((s)=>{
+            infoMessages.push(s);
+            return true;
+        });
+        (0, _assign.extractPullRequestPayload)(context);
+        expect(infoMessages.some((e)=>/Pull Request payload was not found/.test(e))).toBeTruthy();
+        expect(exitMock).toHaveBeenCalledWith(1);
     });
 });
 describe("Calling GitHub's API", ()=>{
@@ -245,7 +261,7 @@ describe("Calling GitHub's API", ()=>{
             owner: 'owner',
             repo: 'repo'
         };
-        const result = await (0, _assign.extractAssigneeCount)(pullRequest)(mockedOctokit);
+        const result = await (0, _reviewers.extractAssigneeCount)(pullRequest)(mockedOctokit);
         expect(result).toEqual(teams.length + users.length);
         expect(infoMock).toHaveBeenCalledWith(JSON.stringify(teams.map((t)=>t.name)));
         expect(infoMock).toHaveBeenCalled();
@@ -266,7 +282,7 @@ describe("Calling GitHub's API", ()=>{
             owner: 'owner',
             repo: 'repo'
         };
-        expect(()=>(0, _assign.extractAssigneeCount)(pullRequest)(mockedOctokit)).rejects.toBeTruthy();
+        expect(()=>(0, _reviewers.extractAssigneeCount)(pullRequest)(mockedOctokit)).rejects.toBeTruthy();
     });
     it('can extract changed files if not set', async ()=>{
         const files = [
