@@ -15,26 +15,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: yarn
+          cache: pnpm
 
       - name: Install packages
         run: |
-          yarn install
+          pnpm install
 
       - name: Install SWC
         run: |
-          yarn global add @swc/core @swc/cli
+          pnpm install -g @swc/core @swc/cli
 
       - name: Build
         run: |
-          yarn build
+          pnpm run build
 
       - name: Run unit tests
         run: |
-          yarn test
+          pnpm run test
         env:
           CI_TEST: true

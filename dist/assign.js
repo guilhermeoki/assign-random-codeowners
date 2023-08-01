@@ -9,27 +9,13 @@ function _export(target, all) {
     });
 }
 _export(exports, {
-    setup: function() {
-        return setup;
-    },
-    extractPullRequestPayload: function() {
-        return extractPullRequestPayload;
-    },
-    extractChangedFiles: function() {
-        return extractChangedFiles;
-    },
-    fetchTeamMembers: function() {
-        return fetchTeamMembers;
-    },
-    selectReviewers: function() {
-        return selectReviewers;
-    },
-    assignReviewers: function() {
-        return assignReviewers;
-    },
-    run: function() {
-        return run;
-    }
+    setup: ()=>setup,
+    extractPullRequestPayload: ()=>extractPullRequestPayload,
+    extractChangedFiles: ()=>extractChangedFiles,
+    fetchTeamMembers: ()=>fetchTeamMembers,
+    selectReviewers: ()=>selectReviewers,
+    assignReviewers: ()=>assignReviewers,
+    run: ()=>run
 });
 const _core = require("@actions/core");
 const _github = require("@actions/github");
@@ -67,7 +53,7 @@ const getGitHubToken = ()=>{
     return token;
 };
 const extractPullRequestPayload = (context)=>{
-    const { payload: { pull_request: payload }, repo: { repo, owner } } = context;
+    const { payload: { pull_request: payload  } , repo: { repo , owner  }  } = context;
     const author = payload?.['user']?.['login'];
     const pullRequest = payload && repo && owner ? {
         number: payload.number,
@@ -83,9 +69,9 @@ const extractPullRequestPayload = (context)=>{
 };
 const extractChangedFiles = (assignFromChanges, pullRequest)=>async (octokit)=>{
         if (!assignFromChanges) return [];
-        const { owner, repo, number: pull_number } = pullRequest;
+        const { owner , repo , number: pull_number  } = pullRequest;
         (0, _core.info)(`Requesting files changed in PR #${pull_number} via the GitHub API.`);
-        const { data: changedFiles, status } = await octokit.rest.pulls.listFiles({
+        const { data: changedFiles , status  } = await octokit.rest.pulls.listFiles({
             owner,
             repo,
             pull_number
@@ -105,7 +91,7 @@ const fetchTeamMembers = (organisation, codeowners)=>async (octokit)=>{
             (0, _core.info)(`Requesting team members for team '${organisation}/${team}' via the GitHub API.`);
             // Fetch members from each team since there's currently no way
             // to fetch all teams with members from a GitHub organisation.
-            const { data: teamMembers, status } = await octokit.rest.teams.listMembersInOrg({
+            const { data: teamMembers , status  } = await octokit.rest.teams.listMembersInOrg({
                 org: organisation,
                 team_slug: extractTeamSlug(team)
             });
@@ -127,7 +113,7 @@ const fetchTeamMembers = (organisation, codeowners)=>async (octokit)=>{
         return joined;
     };
 const selectReviewers = async (changedFiles, codeowners, teamMembers, options)=>{
-    const { assignedReviewers, reviewers, assignIndividuals, author } = options;
+    const { assignedReviewers , reviewers , assignIndividuals , author  } = options;
     const selectedTeams = new Set();
     const selectedUsers = new Set();
     const assignees = ()=>selectedTeams.size + selectedUsers.size + assignedReviewers;
@@ -193,14 +179,14 @@ const selectReviewers = async (changedFiles, codeowners, teamMembers, options)=>
     };
 };
 const assignReviewers = (pullRequest, reviewers)=>async (octokit)=>{
-        const { repo, owner, number } = pullRequest;
-        const { teams, users, count } = reviewers;
+        const { repo , owner , number  } = pullRequest;
+        const { teams , users , count  } = reviewers;
         if (count === 0) {
             (0, _core.info)('No reviewers were selected. Skipping requesting reviewers.');
             return reviewers;
         }
         (0, _core.info)(`Requesting ${count} reviewers via the GitHub API.`);
-        const { data: assigned, status } = await octokit.rest.pulls.requestReviewers({
+        const { data: assigned , status  } = await octokit.rest.pulls.requestReviewers({
             owner,
             repo,
             pull_number: number,
@@ -225,7 +211,7 @@ const isCITestRun = process.env['CI_TEST'];
 const run = async ()=>{
     if (isCITestRun) return;
     try {
-        const { reviewers, assignFromChanges, assignIndividuals, octokit } = setup();
+        const { reviewers , assignFromChanges , assignIndividuals , octokit  } = setup();
         const pullRequest = extractPullRequestPayload(_github.context);
         const codeowners = await (0, _codeowners.getCodeowners)();
         const assignedReviewers = await (0, _reviewers.extractAssigneeCount)(pullRequest)(octokit);

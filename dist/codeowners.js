@@ -4,13 +4,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 Object.defineProperty(exports, "getCodeowners", {
     enumerable: true,
-    get: function() {
-        return getCodeowners;
-    }
+    get: ()=>getCodeowners
 });
 const _core = require("@actions/core");
 const _fs = require("fs");
-const _codeownersutils = require("codeowners-utils");
+const _codeownersUtils = require("codeowners-utils");
 const validCodeownersPaths = [
     'CODEOWNERS',
     '.github/CODEOWNERS',
@@ -22,7 +20,7 @@ const getCodeowners = async ()=>{
     const codeownersContents = await _fs.promises.readFile(codeownersLocation, {
         encoding: 'utf-8'
     });
-    const codeowners = (0, _codeownersutils.parse)(codeownersContents);
+    const codeowners = (0, _codeownersUtils.parse)(codeownersContents);
     (0, _core.info)('Parsed CODEOWNERS:');
     (0, _core.info)(stringify(codeowners));
     return codeowners;

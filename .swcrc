@@ -1,16 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/swcrc",
   "jsc": {
+    "target": "es2022",
     "parser": {
       "syntax": "typescript",
       "tsx": false,
       "decorators": false,
       "dynamicImport": false
-    }
-  },
-  "env": {
-    "targets": {
-      "node": "20"
     }
   },
   "module": {

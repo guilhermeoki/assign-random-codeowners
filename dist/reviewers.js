@@ -4,20 +4,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 Object.defineProperty(exports, "extractAssigneeCount", {
     enumerable: true,
-    get: function() {
-        return extractAssigneeCount;
-    }
+    get: ()=>extractAssigneeCount
 });
 const _core = require("@actions/core");
 const stringify = (input)=>JSON.stringify(input);
 const extractAssigneeCount = (pullRequest)=>async (octokit)=>{
-        const { owner, repo, number: pull_number } = pullRequest;
+        const { owner , repo , number: pull_number  } = pullRequest;
         const requestedReviewsCount = await getRequestedReviewsCount(owner, repo, pull_number, octokit);
         return requestedReviewsCount;
     };
 const getRequestedReviewsCount = async (owner, repo, pull_number, octokit)=>{
     (0, _core.info)(`Requesting current reviewers in PR #${pull_number} via the GitHub API.`);
-    const { data: { teams, users }, status } = await octokit.rest.pulls.listRequestedReviewers({
+    const { data: { teams , users  } , status  } = await octokit.rest.pulls.listRequestedReviewers({
         owner,
         repo,
         pull_number

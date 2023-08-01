@@ -24,19 +24,22 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: yarn
+          cache: pnpm
 
       - name: Install production packages
         run: |
-          yarn install --production
+          pnpm install --production
 
       - name: Install SWC
         run: |
-          yarn global add @swc/core @swc/cli
+          pnpm install -g @swc/core @swc/cli
 
       - name: Remove development types
         run: |
@@ -48,7 +51,7 @@ jobs:
 
       - name: Build
         run: |
-          yarn build
+          pnpm run build
 
       - name: Restore development types
         run: |
@@ -76,6 +79,6 @@ jobs:
 
       - name: Release
         run: |
-          npx --package=@auto-it/git-tag --package=auto -- auto shipit
+          pnpx --package=@auto-it/git-tag --package=auto -- auto shipit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

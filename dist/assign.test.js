@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 const _assign = require("./assign");
-const _core = /*#__PURE__*/ _interop_require_wildcard(require("@actions/core"));
+const _core = /*#__PURE__*/ _interopRequireWildcard(require("@actions/core"));
 const _reviewers = require("./reviewers");
 function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function") return null;
@@ -13,7 +13,7 @@ function _getRequireWildcardCache(nodeInterop) {
         return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
 }
-function _interop_require_wildcard(obj, nodeInterop) {
+function _interopRequireWildcard(obj, nodeInterop) {
     if (!nodeInterop && obj && obj.__esModule) {
         return obj;
     }
