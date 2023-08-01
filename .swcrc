@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/swcrc",
   "jsc": {
-    "target": "es2020",
     "parser": {
       "syntax": "typescript",
       "tsx": false,
@@ -11,7 +10,7 @@
   },
   "env": {
     "targets": {
-      "node": "19"
+      "node": "20"
     }
   },
   "module": {
