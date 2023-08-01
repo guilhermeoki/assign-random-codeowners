@@ -79,6 +79,6 @@ jobs:
 
       - name: Release
         run: |
-          pnpx --package=@auto-it/git-tag --package=auto -- auto shipit
+          npx --package=@auto-it/git-tag --package=auto -- auto shipit
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
