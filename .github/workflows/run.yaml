@@ -47,6 +47,19 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install packages
+        run: |
+          pnpm install
+
       - name: Setup elevated SSH token
         uses: webfactory/ssh-agent@v0.7.0
         with:
