@@ -53,11 +53,11 @@ export const extractPullRequestPayload = (context: Context): PullRequestInformat
   const pullRequest =
     payload && repo && owner
       ? {
-          number: payload.number,
-          repo,
-          owner,
-          author,
-        }
+        number: payload.number,
+        repo,
+        owner,
+        author,
+      }
       : undefined
 
   if (!pullRequest) {
@@ -97,7 +97,7 @@ export const fetchTeamMembers = (organisation: string, codeowners: CodeOwnersEnt
 
   const allTeams = await Promise.all(
     allTeamOwners.map(async team => {
-      info(`Requesting team members for team '${organisation}/${team}' via the GitHub API.`)
+      info(`Requesting team members for team '${organisation}/${extractTeamSlug(team)}' via the GitHub API.`)
       // Fetch members from each team since there's currently no way
       // to fetch all teams with members from a GitHub organisation.
       const { data: teamMembers, status } = await octokit.rest.teams.listMembersInOrg({
